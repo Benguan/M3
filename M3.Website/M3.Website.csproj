@@ -120,6 +120,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Resources\css\site.css" />
     <Content Include="Resources\js\_references.js" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\css\bootstrap-theme.css" />
