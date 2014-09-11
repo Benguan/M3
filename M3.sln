@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Website", "M3.Website\M3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.ThumbnailBuilder", "M3.ThumbnailBuilder\M3.ThumbnailBuilder.csproj", "{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Helpers", "M3.Helpers\M3.Helpers.csproj", "{D3E6D540-78BE-4AC0-A147-D0F237F618DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
