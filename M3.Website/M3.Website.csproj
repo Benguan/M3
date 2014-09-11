@@ -133,6 +133,7 @@
     <None Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.intellisense.js" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.js" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.min.js" />
+    <Content Include="test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
