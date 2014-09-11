@@ -15,17 +15,16 @@ namespace M3.ThumbnailBuilder
         private void StartButton_Click(object sender, EventArgs e)
         {
             var sourceFolder = new DirectoryInfo(SourceFolderTextBox.Text);
-            var targetFolder = new DirectoryInfo(TargetFolderTextBox.Text);
-            if (!targetFolder.Exists)
-            {
-                targetFolder.Create();
-            }
-            var files = sourceFolder.GetFiles("*.jpg");
-
+            var files = sourceFolder.GetFiles("*.jpg", SearchOption.AllDirectories);
+            var fileCount = 0;
+            var startTime = DateTime.Now;
             foreach (var file in files)
             {
-                ImageHelper.GetThumbnail(100, 100, file.FullName, Path.Combine(TargetFolderTextBox.Text, file.Name));
+                var newPath = TargetFolderTextBox.Text + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
+                ImageHelper.GetThumbnail(100, 100, file.FullName, Path.Combine(TargetFolderTextBox.Text, newPath));
+                fileCount++;
             }
+            MessageBox.Show(string.Format("Done!\n共转换{0}个文件，耗时{1}秒", fileCount, (DateTime.Now - startTime).TotalSeconds), "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

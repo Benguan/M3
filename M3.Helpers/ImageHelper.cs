@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace M3.Helpers
 {
@@ -47,6 +48,11 @@ namespace M3.Helpers
             }
             var encoderParameters = new EncoderParameters(1);
             encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, (long)qualityValue);
+            var saveFileInfo = new FileInfo(saveFilePath);
+            if (!saveFileInfo.Directory.Exists)
+            {
+                saveFileInfo.Directory.Create();
+            }
             finalImage.Save(saveFilePath, encoder, encoderParameters);
             finalImage.Dispose();
             sourceImage.Dispose();
