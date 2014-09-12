@@ -48,9 +48,9 @@ namespace M3.ThumbnailBuilder
                     {
                         category.Year = 0;
                     }
+                    var photoId = 0;
                     foreach (var file in files)
                     {
-
                         var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
                         var thumbnailFullPath = Path.Combine(TargetFolderTextBox.Text, thumbnailFolder, thumbnailFileNameWithFolder);
                         ImageHelper.GetThumbnail(100, 100, file.FullName, thumbnailFullPath, false);
@@ -58,9 +58,10 @@ namespace M3.ThumbnailBuilder
                         var normalFullPath = Path.Combine(TargetFolderTextBox.Text, normalFolder, normalFileNameWithFolder);
                         ImageHelper.GetThumbnail(1000, 800, file.FullName, normalFullPath, false);
 
-                        //TODO: 修改URL
+                        photoId++;
                         var photo = new Photo
                         {
+                            Id = photoId,
                             NormalUrl = normalFullPath,
                             ThumbnailUrl = thumbnailFullPath
                         };
@@ -74,11 +75,11 @@ namespace M3.ThumbnailBuilder
             }
 
             gallery.Categories.Sort();
-            var id = 0;
+            var categoryId = 0;
             foreach (var category in gallery.Categories)
             {
-                id++;
-                category.Id = id;
+                categoryId++;
+                category.Id = categoryId;
             }
 
             StorageHelper.SaveGallery(gallery);

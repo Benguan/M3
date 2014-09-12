@@ -9,13 +9,13 @@ namespace M3.Website
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-               name: "GetGalleryDetailApi",
-               routeTemplate: "api/{controller}/Detail/{id}",
-               defaults: new { action = "Detail", id = RouteParameter.Optional }
+               name: "GalleryDetailApi",
+               routeTemplate: "api/{controller}/Detail/{id}/{page}",
+               defaults: new { action = "Detail", page = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-               name: "GetGalleryPreviewApi",
+               name: "GalleryPreviewApi",
                routeTemplate: "api/{controller}/Preview/{id}",
                defaults: new { action = "Preview", id = RouteParameter.Optional }
             );

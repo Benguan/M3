@@ -124,7 +124,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\GetGalleryController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -144,7 +144,10 @@
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\js\bootstrap.js" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\js\bootstrap.min.js" />
     <Content Include="packages.config" />
-    <Content Include="ConfigFIles\CommonConfiguration.config">
+    <Content Include="ConfigFiles\CommonConfiguration.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigFiles\WebsiteConfiguration.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.intellisense.js" />
