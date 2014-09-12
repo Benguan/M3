@@ -7,30 +7,31 @@ namespace M3.Website.Controllers
 {
     public class GalleryController : ApiController
     {
-        // GET: api/Gallery/Detail/5
+        // GET: api/Gallery/Detail/1/3
         [HttpGet]
         public Category Detail(int id, int page)
         {
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == id);
             var pageSize = ConfigurationManager.WebsiteConfiguration.DetailPageSize;
-            var getCount = pageSize;
+            var photosCount = category.Photos.Count;
+            var currentPageSize = pageSize;
             var startId = pageSize * (page - 1);
-            var maxPage = category.Photos.Count / pageSize;
-            if (page > maxPage)
-            {
-                getCount = category.Photos.Count - pageSize * (page - 1);
-            }
-            if (getCount < 0)
+            if (startId > photosCount)
             {
                 return null;
+            }
+            var maxFullPage = category.Photos.Count / pageSize;
+            if (page > maxFullPage)
+            {
+                currentPageSize = category.Photos.Count - pageSize * (page - 1);
             }
             var pagedCategory = new Category
             {
                 Id = category.Id,
                 Name = category.Name,
                 Year = category.Year,
-                Photos = category.Photos.GetRange(startId, getCount)
+                Photos = category.Photos.GetRange(startId, currentPageSize)
             };
 
             return pagedCategory;

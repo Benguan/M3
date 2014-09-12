@@ -62,8 +62,9 @@ namespace M3.ThumbnailBuilder
                         var photo = new Photo
                         {
                             Id = photoId,
-                            NormalUrl = normalFullPath,
-                            ThumbnailUrl = thumbnailFullPath
+                            Title = Path.GetFileNameWithoutExtension(file.FullName),
+                            NormalUrl = "Resources/images/" + normalFolder + "/" + StringHelper.GetUriFromPath(normalFileNameWithFolder),
+                            ThumbnailUrl = "Resources/images/" + thumbnailFolder + "/" + StringHelper.GetUriFromPath(thumbnailFileNameWithFolder)
                         };
 
                         category.Photos.Add(photo);
