@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace M3.Website
 {
@@ -14,6 +15,7 @@ namespace M3.Website
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            GlobalConfiguration.Configuration.AddJsonpFormatter();
         }
     }
 }
