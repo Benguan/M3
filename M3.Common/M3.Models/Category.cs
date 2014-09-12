@@ -12,6 +12,10 @@ namespace M3.Models
 
         public string Name { get; set; }
 
+        public int Page { get; set; }
+
+        public Photo Cover { get; set; }
+
         public List<Photo> Photos { get; set; }
 
         public int CompareTo(object obj)

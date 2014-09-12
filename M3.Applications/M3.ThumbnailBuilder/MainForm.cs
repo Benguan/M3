@@ -34,6 +34,7 @@ namespace M3.ThumbnailBuilder
             {
                 var category = new Category
                 {
+                    Name = folder.Name,
                     Photos = new List<Photo>()
                 };
                 var files = folder.GetFiles("*.jpg", SearchOption.AllDirectories);
@@ -62,8 +63,9 @@ namespace M3.ThumbnailBuilder
                         var photo = new Photo
                         {
                             Id = photoId,
-                            NormalUrl = normalFullPath,
-                            ThumbnailUrl = thumbnailFullPath
+                            Title = Path.GetFileNameWithoutExtension(file.FullName),
+                            NormalUrl = "Resources/images/" + normalFolder + "/" + StringHelper.GetUriFromPath(normalFileNameWithFolder),
+                            ThumbnailUrl = "Resources/images/" + thumbnailFolder + "/" + StringHelper.GetUriFromPath(thumbnailFileNameWithFolder)
                         };
 
                         category.Photos.Add(photo);

@@ -39,7 +39,7 @@ namespace M3.Helpers
                 graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //设置高质量,低速度呈现平滑程度
                 graphics.Clear(Color.Transparent); //清空画布并以透明背景色填充
                 graphics.DrawImage(sourceImage, destRect, srcRect, GraphicsUnit.Pixel);
-
+                graphics.Dispose();
                 var qualityValue = 100; //图像质量 1-100的范围
                 var codecs = ImageCodecInfo.GetImageEncoders();
                 ImageCodecInfo encoder = null;
