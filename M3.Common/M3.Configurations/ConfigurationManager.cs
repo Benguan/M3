@@ -24,6 +24,12 @@
             set { Config.CommonConfiguration = value; }
         }
 
+        public static WebsiteConfiguration WebsiteConfiguration
+        {
+            get { return Config.WebsiteConfiguration; }
+            set { Config.WebsiteConfiguration = value; }
+        }
+
         private class InternalConfiguration : ConfigurationManagerBase
         {
             private static InternalConfiguration Config;
@@ -62,6 +68,20 @@
                 set
                 {
                     commonConfiguration = value;
+                }
+            }
+
+            private WebsiteConfiguration websiteConfiguration;
+            public WebsiteConfiguration WebsiteConfiguration
+            {
+                get
+                {
+                    websiteConfiguration = GetConfiguration<WebsiteConfiguration>("WebsiteConfigurationFilePath");
+                    return websiteConfiguration;
+                }
+                set
+                {
+                    websiteConfiguration = value;
                 }
             }
         }

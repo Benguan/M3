@@ -40,18 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebsiteConfiguration.cs" />
     <Compile Include="CommonConfiguration.cs" />
     <Compile Include="ThumbnailBuilderConfiguration.cs" />
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="ConfigurationManagerBase.cs" />
     <Compile Include="ObjectXmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ConfigFiles\CommonConfiguration.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ConfigFiles\ThumbnailBuilderConfiguration.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
