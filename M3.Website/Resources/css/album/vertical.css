@@ -1,6 +1,4 @@
-﻿@charset "utf-8";
-
-.tn3e-gallery {
+﻿.tn3e-gallery {
     position: relative;
     width: 960px;
     height: 450px;
@@ -58,6 +56,13 @@
     width: 114px;
     height: 72px;
 }
+
+.tn3e-thumbs, .tn3e-thumb {
+    webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
 
 .tn3e-thumb-selected {
     cursor: default;

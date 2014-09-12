@@ -273,7 +273,7 @@
                             <div class="tn3e-image-ins" style="position: absolute; width: 100%; height: 100%;">\
                                 <div class="tn3e-image-in" style="position: absolute; overflow: hidden; visibility: visible; width: 770px; height: 300.885416666667px; left: 0px;">\
                                     <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;">\
-                                        <img src="css/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
+                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
                                     </div>\
                                 </div>\
                             </div>\
@@ -284,7 +284,7 @@
                                     <div class="tn3e-show-albums" title="Album List"></div>\
                                 </div>\
                                 <div class="tn3e-preloader" style="display: none;">\
-                                    <img src="css/preload.gif">\
+                                    <img src="/Resources/images/album/preload.gif">\
                                 </div>\
                                 <div class="tn3e-timer" style="display: none;"></div>\
                             </div>\
