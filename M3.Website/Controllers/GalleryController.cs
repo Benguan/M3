@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 using M3.Configurations;
 using M3.Helpers;
 using M3.Models;
@@ -43,24 +46,47 @@ namespace M3.Website.Controllers
         [HttpGet]
         public Category Preview(int id)
         {
-            var previewSize = ConfigurationManager.WebsiteConfiguration.PreviewCategorySize;
+           
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == id);
+
+			var previewSize = ConfigurationManager.WebsiteConfiguration.PreviewCategorySize >= category.Photos.Count ?
+				ConfigurationManager.WebsiteConfiguration.PreviewCategorySize : category.Photos.Count;
+
             var previewCategory = new Category
             {
                 Id = category.Id,
                 Name = category.Name,
                 Year = category.Year
             };
-            if (category.Photos.Count >= previewSize)
-            {
-                previewCategory.Photos = category.Photos.GetRange(0, previewSize);
-            }
-            else
-            {
-                previewCategory.Photos = category.Photos.GetRange(0, category.Photos.Count);
-            }
+
+	        var lstPhotos = new List<Photo>();
+
+			GetRandomPhotos(category.Photos.Count, previewSize, 0, category.Photos,ref lstPhotos);
+
+	        previewCategory.Photos = lstPhotos.GetRange(0, previewSize);
+  
             return previewCategory;
         }
+
+
+		private void GetRandomPhotos(int allCount, int previewSize, int index, List<Photo> lstAllCategories, ref List<Photo> lstCategories)
+	    {
+		    if ( index >= previewSize) return;
+
+			var random = new Random();
+		    int randomIndex = random.Next(0, allCount);
+
+		    if (lstCategories.Any(p=>p.Id == randomIndex))
+		    {
+				GetRandomPhotos(allCount, previewSize, index, lstAllCategories,ref lstCategories);
+		    }
+		    else
+		    {
+				lstCategories.Add(lstAllCategories.FirstOrDefault(p => p.Id == randomIndex));
+				GetRandomPhotos(allCount, previewSize, ++index, lstAllCategories, ref lstCategories);
+		    }
+			
+	    }
     }
 }
