@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 
 namespace M3.Website
 {
@@ -19,6 +20,8 @@ namespace M3.Website
                routeTemplate: "api/{controller}/Preview/{id}",
                defaults: new { action = "Preview", id = RouteParameter.Optional }
             );
+
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }
