@@ -42,7 +42,7 @@
             {
                 get
                 {
-                    thumbnailBuilderConfiguration = GetConfiguration<ThumbnailBuilderConfiguration>("ThumbnailBuilderConfiguration");
+                    thumbnailBuilderConfiguration = GetConfiguration<ThumbnailBuilderConfiguration>("ThumbnailBuilderConfigurationFilePath");
                     return thumbnailBuilderConfiguration;
                 }
                 set

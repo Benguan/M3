@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace M3.Models
 {
-    public class Category
+    public class Category : IComparable
     {
         public int Id { get; set; }
 
@@ -11,5 +13,20 @@ namespace M3.Models
         public string Name { get; set; }
 
         public List<Photo> Photos { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            var compareCategory = (Category)obj;
+            if (this.Year > compareCategory.Year)
+            {
+                return 1;
+            }
+            else if (this.Year < compareCategory.Year)
+            {
+                return -1;
+            }
+
+            return new CaseInsensitiveComparer().Compare(this.Name, compareCategory.Name);
+        }
     }
 }

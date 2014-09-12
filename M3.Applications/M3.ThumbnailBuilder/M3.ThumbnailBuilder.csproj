@@ -64,8 +64,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="..\..\M3.Common\M3.Configurations\ConfigFiles\CommonConfiguration.config">
+      <Link>ConfigFiles\CommonConfiguration.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\M3.Common\M3.Configurations\ConfigFiles\ThumbnailBuilderConfiguration.config">
       <Link>ConfigFiles\ThumbnailBuilderConfiguration.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,6 +93,10 @@
     <ProjectReference Include="..\..\M3.Common\M3.Helpers\M3.Helpers.csproj">
       <Project>{d3e6d540-78be-4ac0-a147-d0f237f618dc}</Project>
       <Name>M3.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\M3.Common\M3.Models\M3.Models.csproj">
+      <Project>{10c26a41-0347-45e6-8a25-e69be6598bcd}</Project>
+      <Name>M3.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

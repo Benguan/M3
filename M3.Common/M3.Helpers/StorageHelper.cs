@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using M3.Configurations;
 using M3.Models;
 
@@ -7,35 +6,33 @@ namespace M3.Helpers
 {
     public class StorageHelper
     {
-        public static string StorageFolderName { get; set; }
-        public static string AppDirectory { get; set; }
+        public static string StorageFolderPath { get; set; }
 
         static StorageHelper()
         {
-            StorageFolderName = ConfigurationManager.CommonConfiguration.StorageFolderName;
-            AppDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            StorageFolderPath = ConfigurationManager.CommonConfiguration.StorageFolderPath;
         }
 
         private static bool Save(object o, string storageName)
         {
-            var storagePath = Path.Combine(AppDirectory, StorageFolderName, storageName);
+            var storagePath = Path.Combine(StorageFolderPath, storageName);
             return SerializerHelper.XmlSerialize(o, storagePath);
         }
 
         private static T Get<T>(string storageName)
         {
-            var storagePath = Path.Combine(AppDirectory, StorageFolderName, storageName);
+            var storagePath = Path.Combine(StorageFolderPath, storageName);
             return SerializerHelper.XmlDeserialize<T>(storagePath);
         }
 
-        public static Gallery Get()
+        public static Gallery GetGallery()
         {
-            return Get<Gallery>(ConfigurationManager.CommonConfiguration.StorageFolderName);
+            return Get<Gallery>(ConfigurationManager.CommonConfiguration.GalleryStorageFileName);
         }
 
-        public static bool Save(object o)
+        public static bool SaveGallery(Gallery gallery)
         {
-            return Save(o, ConfigurationManager.CommonConfiguration.StorageFolderName);
+            return Save(gallery, ConfigurationManager.CommonConfiguration.GalleryStorageFileName);
         }
     }
 }
