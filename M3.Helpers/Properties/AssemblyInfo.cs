@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("M3.Helpers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("joey")]
+[assembly: AssemblyCompany("Newegg")]
 [assembly: AssemblyProduct("M3.Helpers")]
-[assembly: AssemblyCopyright("Copyright © joey 2014")]
+[assembly: AssemblyCopyright("Copyright © M3 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

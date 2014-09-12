@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Newegg")]
 [assembly: AssemblyProduct("M3.Configurations")]
-[assembly: AssemblyCopyright("Copyright © Newegg 2014")]
+[assembly: AssemblyCopyright("Copyright © M3 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
