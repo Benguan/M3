@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using M3.Configurations;
 using M3.Helpers;
 using M3.Models;
+using Newtonsoft.Json;
 
 namespace M3.Website.Controllers
 {
@@ -12,7 +10,7 @@ namespace M3.Website.Controllers
     {
         // GET: api/Gallery/Detail/1/3
         [HttpGet]
-        public Category Detail(int id, int page)
+        public string Detail(int id, int page, string callback)
         {
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == id);
@@ -39,19 +37,18 @@ namespace M3.Website.Controllers
                 Photos = category.Photos.GetRange(startId, currentPageSize)
             };
 
-            return pagedCategory;
+            return string.Format("{0}({1});", callback, JsonConvert.SerializeObject(pagedCategory));
         }
 
         // GET: api/Gallery/Preview/5
         [HttpGet]
         public Category Preview(int id)
         {
-           
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == id);
 
-			var previewSize = ConfigurationManager.WebsiteConfiguration.PreviewCategorySize >= category.Photos.Count ?
-				ConfigurationManager.WebsiteConfiguration.PreviewCategorySize : category.Photos.Count;
+            var previewSize = ConfigurationManager.WebsiteConfiguration.PreviewCategorySize >= category.Photos.Count ?
+                ConfigurationManager.WebsiteConfiguration.PreviewCategorySize : category.Photos.Count;
 
             var previewCategory = new Category
             {
@@ -60,33 +57,9 @@ namespace M3.Website.Controllers
                 Year = category.Year
             };
 
-	        var lstPhotos = new List<Photo>();
+            previewCategory.Photos = ListHelper.GetRandomOrder<Photo>(category.Photos).GetRange(0, previewSize);
 
-			GetRandomPhotos(category.Photos.Count, previewSize, 0, category.Photos,ref lstPhotos);
-
-	        previewCategory.Photos = lstPhotos.GetRange(0, previewSize);
-  
             return previewCategory;
         }
-
-
-		private void GetRandomPhotos(int allCount, int previewSize, int index, List<Photo> lstAllCategories, ref List<Photo> lstCategories)
-	    {
-		    if ( index >= previewSize) return;
-
-			var random = new Random();
-		    int randomIndex = random.Next(0, allCount);
-
-		    if (lstCategories.Any(p=>p.Id == randomIndex))
-		    {
-				GetRandomPhotos(allCount, previewSize, index, lstAllCategories,ref lstCategories);
-		    }
-		    else
-		    {
-				lstCategories.Add(lstAllCategories.FirstOrDefault(p => p.Id == randomIndex));
-				GetRandomPhotos(allCount, previewSize, ++index, lstAllCategories, ref lstCategories);
-		    }
-			
-	    }
     }
 }
