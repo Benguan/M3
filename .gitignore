@@ -149,3 +149,7 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+
+# Remove Photos
+Resources/images/normal
+Resources/images/thumbnail/

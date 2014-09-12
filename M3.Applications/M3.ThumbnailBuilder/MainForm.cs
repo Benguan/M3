@@ -34,6 +34,7 @@ namespace M3.ThumbnailBuilder
             {
                 var category = new Category
                 {
+                    Name = folder.Name,
                     Photos = new List<Photo>()
                 };
                 var files = folder.GetFiles("*.jpg", SearchOption.AllDirectories);

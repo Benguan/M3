@@ -31,6 +31,8 @@ namespace M3.Website.Controllers
                 Id = category.Id,
                 Name = category.Name,
                 Year = category.Year,
+                Page = page,
+                Cover = category.Photos[0],
                 Photos = category.Photos.GetRange(startId, currentPageSize)
             };
 
