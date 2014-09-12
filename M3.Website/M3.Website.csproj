@@ -144,6 +144,9 @@
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\js\bootstrap.js" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\js\bootstrap.min.js" />
     <Content Include="packages.config" />
+    <Content Include="ConfigFIles\CommonConfiguration.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.intellisense.js" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.js" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.min.js" />
