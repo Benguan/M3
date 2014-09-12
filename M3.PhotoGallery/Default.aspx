@@ -460,8 +460,7 @@ div.reflection.selected .mover
     function flickr(callback, page) {
         var host = "http://localhost:43926/";
         var api = "api/Gallery/Detail/" + page + "/1";
-        //var url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=930b01dcc086fef4cddd1467af01868e&per_page=21&extras=url_o,url_m,url_s&page=" + page + "&format=json&jsoncallback=biz.get";
-        var url = host + api
+        var url = host + api;
 
         jQuery.ajax({
             url: url,
