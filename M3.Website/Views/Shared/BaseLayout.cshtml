@@ -23,15 +23,15 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li>@Html.ActionLink("照片墙", "Wall", "Home")</li>
+                    <li>@Html.ActionLink("相册", "Album", "Home")</li>
                     <li>@Html.ActionLink("关于", "About", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
 
-    </div>
+    @RenderBody()
 
     <div class="container footer-content">
         <hr />

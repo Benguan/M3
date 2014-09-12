@@ -1,6 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #fff url('/Resources/images/base/bg.jpg');
+}
+
+.navbar {
+    background: #ffffff;
 }
 
 /* Set padding to keep content from hitting the edges */

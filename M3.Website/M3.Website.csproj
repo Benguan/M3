@@ -137,7 +137,20 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\images\album\bg.png" />
+    <Content Include="Resources\images\album\grad.jpg" />
+    <Content Include="Resources\images\album\preload.gif" />
+    <Content Include="Resources\images\album\texture3.jpg" />
+    <Content Include="Resources\images\album\thumb_bg_v.png" />
+    <Content Include="Resources\images\album\tn3e.png" />
+    <Content Include="Resources\css\album\vertical.css" />
     <Content Include="Resources\css\site.css" />
+    <Content Include="Resources\images\base\bg.jpg" />
+    <Content Include="Resources\js\album\album.js" />
+    <Content Include="Resources\js\album\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Resources\js\album\jquery.galleryview-1.0.js" />
+    <Content Include="Resources\js\album\jquery.galleryview-1.1.js" />
+    <Content Include="Resources\js\album\jquery.timers-1.1.2.js" />
     <Content Include="Resources\js\_references.js" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\css\bootstrap-theme.css" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\css\bootstrap-theme.min.css" />
@@ -169,10 +182,10 @@
     <Content Include="Views\Shared\BaseLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Album.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resources\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\css\bootstrap-theme.css.map" />

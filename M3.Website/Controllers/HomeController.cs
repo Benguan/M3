@@ -9,6 +9,16 @@ namespace M3.Controllers
             return View();
         }
 
+        public ActionResult Wall()
+        {
+            return View();
+        }
+
+        public ActionResult Album()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             return View();

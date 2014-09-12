@@ -151,5 +151,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 # Remove Photos
-M3.Website/Resources/images/normal
-M3.Website/Resources/images/thumbnail/
+M3.Website/Resources/images/photos/
