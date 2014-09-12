@@ -64,9 +64,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="..\M3.Configurations\ConfigFiles\ThumbnailBuilderConfiguration.config">
+    <None Include="..\..\M3.Common\M3.Configurations\ConfigFiles\ThumbnailBuilderConfiguration.config">
       <Link>ConfigFiles\ThumbnailBuilderConfiguration.config</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

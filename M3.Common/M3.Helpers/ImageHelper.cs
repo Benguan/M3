@@ -107,7 +107,7 @@ namespace M3.Helpers
             }
         }
 
-        public static Gallery GetGallery(int id)
+        public static Category GetGallery(int id)
         {
             return null;
         }

@@ -42,8 +42,14 @@
   <ItemGroup>
     <Compile Include="ImageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializerHelper.cs" />
+    <Compile Include="StorageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\M3.Configurations\M3.Configurations.csproj">
+      <Project>{a90e1ad0-d568-4583-a97f-edb34a01255c}</Project>
+      <Name>M3.Configurations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\M3.Models\M3.Models.csproj">
       <Project>{10c26a41-0347-45e6-8a25-e69be6598bcd}</Project>
       <Name>M3.Models</Name>

@@ -18,6 +18,11 @@
             set { Config.ThumbnailBuilderConfiguration = value; }
         }
 
+        public static CommonConfiguration CommonConfiguration
+        {
+            get { return Config.CommonConfiguration; }
+            set { Config.CommonConfiguration = value; }
+        }
 
         private class InternalConfiguration : ConfigurationManagerBase
         {
@@ -37,10 +42,27 @@
             {
                 get
                 {
-                    thumbnailBuilderConfiguration = GetConfiguration<ThumbnailBuilderConfiguration>("ConfigurationFilePath");
+                    thumbnailBuilderConfiguration = GetConfiguration<ThumbnailBuilderConfiguration>("ThumbnailBuilderConfiguration");
                     return thumbnailBuilderConfiguration;
                 }
-                set { thumbnailBuilderConfiguration = value; }
+                set
+                {
+                    thumbnailBuilderConfiguration = value;
+                }
+            }
+
+            private CommonConfiguration commonConfiguration;
+            public CommonConfiguration CommonConfiguration
+            {
+                get
+                {
+                    commonConfiguration = GetConfiguration<CommonConfiguration>("CommonConfigurationFilePath");
+                    return commonConfiguration;
+                }
+                set
+                {
+                    commonConfiguration = value;
+                }
             }
         }
     }

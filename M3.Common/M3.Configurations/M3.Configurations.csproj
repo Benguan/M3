@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonConfiguration.cs" />
     <Compile Include="ThumbnailBuilderConfiguration.cs" />
     <Compile Include="ConfigurationManager.cs" />
     <Compile Include="ConfigurationManagerBase.cs" />
