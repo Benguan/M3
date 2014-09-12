@@ -2,7 +2,6 @@
 using M3.Configurations;
 using M3.Helpers;
 using M3.Models;
-using Newtonsoft.Json;
 
 namespace M3.Website.Controllers
 {
@@ -10,7 +9,7 @@ namespace M3.Website.Controllers
     {
         // GET: api/Gallery/Detail/1/3
         [HttpGet]
-        public string Detail(int id, int page, string callback)
+        public Category Detail(int id, int page, string callback)
         {
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == id);
@@ -37,7 +36,7 @@ namespace M3.Website.Controllers
                 Photos = category.Photos.GetRange(startId, currentPageSize)
             };
 
-            return string.Format("{0}({1});", callback, JsonConvert.SerializeObject(pagedCategory));
+            return pagedCategory;
         }
 
         // GET: api/Gallery/Preview/5
