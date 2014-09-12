@@ -47,7 +47,7 @@ namespace M3.Website.Controllers
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == id);
 
-            var previewSize = ConfigurationManager.WebsiteConfiguration.PreviewCategorySize >= category.Photos.Count ?
+            var previewSize = ConfigurationManager.WebsiteConfiguration.PreviewCategorySize <= category.Photos.Count ?
                 ConfigurationManager.WebsiteConfiguration.PreviewCategorySize : category.Photos.Count;
 
             var previewCategory = new Category
