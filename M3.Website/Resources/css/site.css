@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+html, body {
+    font-family: "Microsoft YaHei UI","Microsoft YaHei", Arial, Helvetica, sans-serif;
+}
+
+.body-content {
+    min-height: 400px;
+}

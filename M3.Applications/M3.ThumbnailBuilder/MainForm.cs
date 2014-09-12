@@ -30,6 +30,13 @@ namespace M3.ThumbnailBuilder
             var startTime = DateTime.Now;
             var year = 0;
             var folders = sourceFolder.GetDirectories();
+
+            var thumbnailMaxWidth = ConfigurationManager.ThumbnailBuilderConfiguration.ThumbnailMaxWidth;
+            var thumbnailMaxHeight = ConfigurationManager.ThumbnailBuilderConfiguration.ThumbnailMaxHeight;
+            var photoMaxWidth = ConfigurationManager.ThumbnailBuilderConfiguration.PhotoMaxWidth;
+            var photoMaxHeight = ConfigurationManager.ThumbnailBuilderConfiguration.PhotoMaxHeight;
+
+
             foreach (var folder in folders)
             {
                 var category = new Category
@@ -54,10 +61,10 @@ namespace M3.ThumbnailBuilder
                     {
                         var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
                         var thumbnailFullPath = Path.Combine(TargetFolderTextBox.Text, thumbnailFolder, thumbnailFileNameWithFolder);
-                        ImageHelper.GetThumbnail(100, 100, file.FullName, thumbnailFullPath, false);
+                        ImageHelper.GetThumbnail(thumbnailMaxWidth, thumbnailMaxHeight, file.FullName, thumbnailFullPath, false);
                         var normalFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
                         var normalFullPath = Path.Combine(TargetFolderTextBox.Text, normalFolder, normalFileNameWithFolder);
-                        ImageHelper.GetThumbnail(1000, 800, file.FullName, normalFullPath, false);
+                        ImageHelper.GetThumbnail(photoMaxWidth, photoMaxHeight, file.FullName, normalFullPath, false);
 
                         photoId++;
                         var photo = new Photo
