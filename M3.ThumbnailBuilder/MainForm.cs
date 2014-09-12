@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using M3.Configurations;
 using M3.Helpers;
 
 namespace M3.ThumbnailBuilder
@@ -10,6 +11,8 @@ namespace M3.ThumbnailBuilder
         public MainForm()
         {
             InitializeComponent();
+            SourceFolderTextBox.Text = ConfigurationManager.ThumbnailBuilderConfiguration.SourceFolderPath;
+            TargetFolderTextBox.Text = ConfigurationManager.ThumbnailBuilderConfiguration.TargetFolderPath;
         }
 
         private void StartButton_Click(object sender, EventArgs e)

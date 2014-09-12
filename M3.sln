@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.ThumbnailBuilder", "M3.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Helpers", "M3.Helpers\M3.Helpers.csproj", "{D3E6D540-78BE-4AC0-A147-D0F237F618DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Configurations", "M3.Configurations\M3.Configurations.csproj", "{A90E1AD0-D568-4583-A97F-EDB34A01255C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E6D540-78BE-4AC0-A147-D0F237F618DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

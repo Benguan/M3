@@ -64,6 +64,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="..\M3.Configurations\ConfigFiles\ThumbnailBuilderConfiguration.config">
+      <Link>ConfigFiles\ThumbnailBuilderConfiguration.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +82,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\M3.Configurations\M3.Configurations.csproj">
+      <Project>{a90e1ad0-d568-4583-a97f-edb34a01255c}</Project>
+      <Name>M3.Configurations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\M3.Helpers\M3.Helpers.csproj">
       <Project>{d3e6d540-78be-4ac0-a147-d0f237f618dc}</Project>
       <Name>M3.Helpers</Name>
