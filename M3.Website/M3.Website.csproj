@@ -164,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\css\bootstrap-theme.css.map" />
@@ -173,6 +172,20 @@
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\M3.Common\M3.Configurations\M3.Configurations.csproj">
+      <Project>{a90e1ad0-d568-4583-a97f-edb34a01255c}</Project>
+      <Name>M3.Configurations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\M3.Common\M3.Helpers\M3.Helpers.csproj">
+      <Project>{d3e6d540-78be-4ac0-a147-d0f237f618dc}</Project>
+      <Name>M3.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\M3.Common\M3.Models\M3.Models.csproj">
+      <Project>{10c26a41-0347-45e6-8a25-e69be6598bcd}</Project>
+      <Name>M3.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

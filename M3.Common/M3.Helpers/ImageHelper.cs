@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using M3.Models;
 
 namespace M3.Helpers
 {
@@ -104,6 +105,11 @@ namespace M3.Helpers
                 }
                 catch { }
             }
+        }
+
+        public static Gallery GetGallery(int id)
+        {
+            return null;
         }
     }
 }

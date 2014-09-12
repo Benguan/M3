@@ -43,6 +43,12 @@
     <Compile Include="ImageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\M3.Models\M3.Models.csproj">
+      <Project>{10c26a41-0347-45e6-8a25-e69be6598bcd}</Project>
+      <Name>M3.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

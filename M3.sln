@@ -5,11 +5,17 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Website", "M3.Website\M3.Website.csproj", "{7BA01B34-2E3F-497E-B055-61F2157C1E26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.ThumbnailBuilder", "M3.ThumbnailBuilder\M3.ThumbnailBuilder.csproj", "{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.ThumbnailBuilder", "M3.Applications\M3.ThumbnailBuilder\M3.ThumbnailBuilder.csproj", "{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Helpers", "M3.Helpers\M3.Helpers.csproj", "{D3E6D540-78BE-4AC0-A147-D0F237F618DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Helpers", "M3.Common\M3.Helpers\M3.Helpers.csproj", "{D3E6D540-78BE-4AC0-A147-D0F237F618DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Configurations", "M3.Configurations\M3.Configurations.csproj", "{A90E1AD0-D568-4583-A97F-EDB34A01255C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Configurations", "M3.Common\M3.Configurations\M3.Configurations.csproj", "{A90E1AD0-D568-4583-A97F-EDB34A01255C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M3.Models", "M3.Common\M3.Models\M3.Models.csproj", "{10C26A41-0347-45E6-8A25-E69BE6598BCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "M3.Common", "M3.Common", "{0995E160-61FC-47CB-AC85-D6B06EE1EA2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "M3.Applications", "M3.Applications", "{84B4DF1A-BC59-4890-9301-174CF0A1A38F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +39,18 @@ Global
 		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A90E1AD0-D568-4583-A97F-EDB34A01255C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10C26A41-0347-45E6-8A25-E69BE6598BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10C26A41-0347-45E6-8A25-E69BE6598BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10C26A41-0347-45E6-8A25-E69BE6598BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10C26A41-0347-45E6-8A25-E69BE6598BCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C51CDAAC-03E3-4927-8EF1-EB31B7241BFB} = {84B4DF1A-BC59-4890-9301-174CF0A1A38F}
+		{D3E6D540-78BE-4AC0-A147-D0F237F618DC} = {0995E160-61FC-47CB-AC85-D6B06EE1EA2D}
+		{A90E1AD0-D568-4583-A97F-EDB34A01255C} = {0995E160-61FC-47CB-AC85-D6B06EE1EA2D}
+		{10C26A41-0347-45E6-8A25-E69BE6598BCD} = {0995E160-61FC-47CB-AC85-D6B06EE1EA2D}
 	EndGlobalSection
 EndGlobal
