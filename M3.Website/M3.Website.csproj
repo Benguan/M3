@@ -165,7 +165,14 @@
     <Content Include="ConfigFiles\WebsiteConfiguration.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\fonts\FontAwesome.otf" />
     <None Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.intellisense.js" />
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\css\font-awesome.css" />
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\css\font-awesome.min.css" />
+    <Content Include="Resources\ThirdParty\FontAwesome\4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.js" />
     <Content Include="Resources\ThirdParty\jQuery\2.1.1\jquery-2.1.1.min.js" />
     <Content Include="Web.config" />
@@ -182,6 +189,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Album.cshtml" />
+    <Content Include="Views\Home\Wall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

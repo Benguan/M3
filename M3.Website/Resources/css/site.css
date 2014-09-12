@@ -4,14 +4,11 @@
     background: #fff url('/Resources/images/base/bg.jpg');
 }
 
-.navbar {
-    background: #ffffff;
-}
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -34,4 +31,63 @@ html, body {
 
 .body-content {
     min-height: 400px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: #ffd800;
+    }
+
+.navbar-inverse .navbar-nav > li.active > a {
+    color: #ffd800;
+}
+
+    .navbar-inverse .navbar-nav > li.active > a:hover {
+        color: #ffd800;
+    }
+
+.about-list {
+    display: inline;
+    padding: .2em .6em;
+    margin-right: 10px;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+    .about-list.blue {
+        background-color: #428bca;
+    }
+
+    .about-list.green {
+        background-color: #5cb85c;
+    }
+
+    .about-list.origine {
+        background-color: #f0ad4e;
+    }
+
+    .about-list.red {
+        background-color: #d9534f;
+    }
+
+h4 i.fa {
+    width: 24px;
+    text-align: center;
+    margin-right: 6px;
 }

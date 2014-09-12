@@ -6,6 +6,10 @@
 
         public string Title { get; set; }
 
+        public int Height { get; set; }
+
+        public int Width { get; set; }
+
         public string Description { get; set; }
 
         public string ThumbnailUrl { get; set; }

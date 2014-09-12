@@ -7,9 +7,11 @@ namespace M3.Helpers
 {
     public class ImageHelper
     {
-        public static void GetThumbnail(int maxWidth, int maxHeight, string originFilePath, string saveFilePath, bool isOverride)
+        public static PhotoInfo GetThumbnail(int maxWidth, int maxHeight, string originFilePath, string saveFilePath, bool isOverride)
         {
             var saveFileInfo = new FileInfo(saveFilePath);
+
+
             if (isOverride || !saveFileInfo.Exists)
             {
                 var sourceImage = Image.FromFile(originFilePath);
@@ -59,11 +61,26 @@ namespace M3.Helpers
                 }
 
                 finalImage.Save(saveFilePath, encoder, encoderParameters);
-
                 finalImage.Dispose();
                 sourceImage.Dispose();
+                return new PhotoInfo
+                {
+                    Height = finalHeight,
+                    Width = finalWidth
+                };
+
+            }
+            else
+            {
+                var existedImage = Image.FromFile(saveFileInfo.FullName);
+                return new PhotoInfo
+                {
+                    Height = existedImage.Height,
+                    Width = existedImage.Width
+                };
             }
         }
+
         public static void CropImage(int originWidth, int originHeight, int startX, int startY, int width, int height, int finalWidth, int finalHeight, string originFilePath, string saveFilePath, bool allowTransparent)
         {
             var sourceImage = Image.FromFile(originFilePath);

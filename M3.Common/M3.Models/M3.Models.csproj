@@ -42,6 +42,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Gallery.cs" />
     <Compile Include="Photo.cs" />
+    <Compile Include="PhotoInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,16 +61,18 @@ namespace M3.ThumbnailBuilder
                     {
                         var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
                         var thumbnailFullPath = Path.Combine(TargetFolderTextBox.Text, thumbnailFolder, thumbnailFileNameWithFolder);
-                        ImageHelper.GetThumbnail(thumbnailMaxWidth, thumbnailMaxHeight, file.FullName, thumbnailFullPath, false);
+                        var thumbnailPhotoInfo = ImageHelper.GetThumbnail(thumbnailMaxWidth, thumbnailMaxHeight, file.FullName, thumbnailFullPath, false);
                         var normalFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
                         var normalFullPath = Path.Combine(TargetFolderTextBox.Text, normalFolder, normalFileNameWithFolder);
-                        ImageHelper.GetThumbnail(photoMaxWidth, photoMaxHeight, file.FullName, normalFullPath, false);
+                        var normalPhotoInfo = ImageHelper.GetThumbnail(photoMaxWidth, photoMaxHeight, file.FullName, normalFullPath, false);
 
                         photoId++;
                         var photo = new Photo
                         {
                             Id = photoId,
                             Title = Path.GetFileNameWithoutExtension(file.FullName),
+                            Height = normalPhotoInfo.Height,
+                            Width = normalPhotoInfo.Width,
                             NormalUrl = "Resources/images/" + normalFolder + "/" + StringHelper.GetUriFromPath(normalFileNameWithFolder),
                             ThumbnailUrl = "Resources/images/" + thumbnailFolder + "/" + StringHelper.GetUriFromPath(thumbnailFileNameWithFolder)
                         };

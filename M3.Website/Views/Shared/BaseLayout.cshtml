@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+    var navbarHomeStyle = (actionName == "Index") ? "active" : string.Empty;
+    var navbarWallStyle = (actionName == "Wall") ? "active" : string.Empty;
+    var navbarAlbumStyle = (actionName == "Album") ? "active" : string.Empty;
+    var navbarAboutStyle = (actionName == "About") ? "active" : string.Empty;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,11 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - M3 Gallery</title>
     <link href="~/Resources/ThirdParty/Bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Resources/ThirdParty/FontAwesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Resources/css/site.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,10 +31,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("照片墙", "Wall", "Home")</li>
-                    <li>@Html.ActionLink("相册", "Album", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
+                    <li class="@navbarHomeStyle">@Html.ActionLink("主页", "Index", "Home")</li>
+                    <li class="@navbarWallStyle">@Html.ActionLink("照片墙", "Wall", "Home")</li>
+                    <li class="@navbarAlbumStyle">@Html.ActionLink("相册", "Album", "Home")</li>
+                    <li class="@navbarAboutStyle">@Html.ActionLink("关于", "About", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -36,7 +45,10 @@
     <div class="container footer-content">
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - M3</p>
+            <div class="container">
+                <p class="text-center">Powered by M3 Team</p>
+                <p class="text-center">&copy; @DateTime.Now.Year <a href="http://www.newegg.com/">Newegg</a>. All Rights Reserved.</p>
+            </div>
         </footer>
     </div>
 

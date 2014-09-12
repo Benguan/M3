@@ -1,10 +1,18 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "关于";
     Layout = "~/Views/Shared/BaseLayout.cshtml";
 }
 
-
 <div class="container body-content">
-    <h2>@ViewBag.Title</h2>
-    <p>Powered by M3 Team</p>
+    <div class="update panel panel-default">
+        <div class="panel-heading">
+            <h4><i class="fa fa-coffee"></i>@ViewBag.Title</h4>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item"><span class="about-list blue"></span>Newegg第一届编程马拉松参赛作品</li>
+            <li class="list-group-item"><span class="about-list green"></span>"M3"队名来历："3W"倒过来</li>
+            <li class="list-group-item"><span class="about-list origine"></span>团队成员：Bean, Ben, Mark, Mark, Yang</li>
+            <li class="list-group-item"><span class="about-list red"></span>口号：第一是我们的！</li>
+        </ul>
+    </div>
 </div>
