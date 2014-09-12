@@ -149,7 +149,6 @@
     <Content Include="Resources\js\album\album.js" />
     <Content Include="Resources\js\album\jquery-migrate-1.2.1.min.js" />
     <Content Include="Resources\js\album\jquery.galleryview-1.0.js" />
-    <Content Include="Resources\js\album\jquery.galleryview-1.1.js" />
     <Content Include="Resources\js\album\jquery.timers-1.1.2.js" />
     <Content Include="Resources\js\_references.js" />
     <Content Include="Resources\ThirdParty\Bootstrap\3.2.0\css\bootstrap-theme.css" />

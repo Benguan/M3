@@ -5,7 +5,7 @@
     width: 960px;
     height: 450px;
     background-color: #c5c5c5;
-    background-image: url('grad.jpg');
+    background-image: url('/Resources/images/album/grad.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     line-height: normal;
@@ -167,7 +167,7 @@
 
 .tn3e-show-albums {
     position: absolute;
-    background-image: url('tn3e.png');
+    background-image: url('/Resources/images/album/tn3e.png');
     background-position: -35px -39px;
     top: 22px;
     left: 23px;
@@ -184,7 +184,7 @@
 
 .tn3e-fullscreen {
     position: absolute;
-    background-image: url('tn3e.png');
+    background-image: url('/Resources/images/album/tn3e.png');
     background-position: -35px -1px;
     top: 22px;
     right: 23px;

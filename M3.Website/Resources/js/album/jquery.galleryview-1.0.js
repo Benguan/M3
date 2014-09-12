@@ -82,8 +82,6 @@
                         console.log("ajax error! pls checked!");
                     }));
             }
-
-
         }
 
         function callback(albums) {
@@ -113,9 +111,6 @@
             var img = j_ins.find(".tn3e-full-image img");
 
             var showImmediately = param && param.showImmediately;
-
-      
-
             if (!showImmediately) {
                 j_ins.animate({ opacity: "-=0.8" }, 200, function () {
                     img.attr("src", thumb.normalUrl);
@@ -127,6 +122,14 @@
             }
 
             iterator = i;
+
+            j_thumb_ul.animate({
+                top: "-" + i * 72 + "px"
+            }, 200)
+
+            j_navPrev.click(showPrevItem);
+            j_navNext.click(showNextItem);
+
             /*
             //Slide either pointer or filmstrip, depending on transition method
             if (slide_method == 'strip') {
@@ -191,20 +194,23 @@
         };
         function showNextItem() {
             $(document).stopTime("transition");
-            if (++iterator == j_frames.length) { iterator = 0; }
-            showItem(iterator);
-            $(document).everyTime(opts.transition_interval, "transition", function () {
-                showNextItem();
-            });
+            if (++iterator >= d_thumb.length - 1) { iterator = 0; }
+            showItem(d_thumb[iterator].id);
+            if (opts.autoPlay) {
+                $(document).everyTime(opts.transition_interval, "transition", function () {
+                    showNextItem();
+                });
+            }
         };
         function showPrevItem() {
             $(document).stopTime("transition");
-            if (--iterator < 0) { iterator = item_count - 1; }
-            //alert(iterator);
-            showItem(iterator);
-            $(document).everyTime(opts.transition_interval, "transition", function () {
-                showNextItem();
-            });
+            if (--iterator < 0) { iterator = d_thumb.length - 1; }
+            showItem(d_thumb[iterator].id);
+            if (opts.autoPlay) {
+                $(document).everyTime(opts.transition_interval, "transition", function () {
+                    showNextItem();
+                });
+            }
         };
         function getPos(el) {
             var left = 0, top = 0;
@@ -272,7 +278,7 @@
                                 </div>\
                             </div>\
                             <div class="tn3-in-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px; display: block;">\
-                                <div class="tn3e-control-bar tn3_v tn3_h tn3_o" style="top: 110.5px; left: 263.5px; display: none; opacity: 0;">\
+                                <div class="tn3e-control-bar tn3_v tn3_h tn3_o" style="top: 110.5px; left: 263.5px; display: block; opacity: 1;">\
                                     <div class="tn3e-fullscreen" title="Maximize"></div>\
                                     <div class="tn3e-play" title="Start Slideshow"></div>\
                                     <div class="tn3e-show-albums" title="Album List"></div>\
@@ -287,6 +293,19 @@
             j_controlbar = strip.find(".tn3e-control-bar");
             j_fullscreen = strip.find(".tn3e-fullscreen");
             j_play = strip.find(".tn3e-play");
+            j_play.click(function () {
+                opts.autoPlay = !opts.autoPlay;
+                if (opts.autoPlay) {
+                    $(this).addClass("tn3e-play-active");
+                    $(document).everyTime(opts.transition_interval, "transition", function () {
+                        showNextItem();
+                    });
+                } else {
+                    $(this).removeClass("tn3e-play-active");
+                    $(document).stopTime("transition");
+                }
+            });
+
             j_gallery.append(strip);
         };
 
@@ -328,6 +347,12 @@
                 showItem(d_thumb[0].id, { showImmediately: true });
             }
 
+            if (opts.autoPlay) {
+                $(document).everyTime(opts.transition_interval, "transition", function () {
+                    showNextItem();
+                });
+            }
+
             j_gallery.css('visibility', 'visible');
         });
     };
@@ -335,10 +360,11 @@
     $.fn.galleryView.defaults = {
         baseUrl: "http://localhost:43926/",
         transition_speed: 500,
-        transition_interval: 6000,
+        transition_interval: 2000,
         overlay_opacity: 0.6,
         show_captions: false,
-        pause_on_hover: false,
+        pause: false,
+        autoPlay: false,
         height: 395
     };
 })(jQuery);
