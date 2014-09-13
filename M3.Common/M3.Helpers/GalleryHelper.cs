@@ -5,7 +5,7 @@ namespace M3.Helpers
 {
     public class GalleryHelper
     {
-        public static Category GetPagedCategory(int categoryId, int page)
+        public static Category GetPagedCategory(int categoryId, int page, bool fill)
         {
             var gallery = StorageHelper.GetGallery();
             var category = gallery.Categories.Find(c => c.Id == categoryId);
@@ -32,11 +32,13 @@ namespace M3.Helpers
                 Photos = category.Photos.GetRange(startId, currentPageSize)
             };
 
-            for (var i = 0; i < pageSize - currentPageSize; i++)
+            if (fill)
             {
-                pagedCategory.Photos.Add(null);
+                for (var i = 0; i < pageSize - currentPageSize; i++)
+                {
+                    pagedCategory.Photos.Add(null);
+                }
             }
-
             return pagedCategory;
         }
     }
