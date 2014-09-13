@@ -180,19 +180,26 @@
 
 .tn3e-show-albums {
     position: absolute;
-    background-image: url('/Resources/images/album/tn3e.png');
     background-position: -35px -39px;
     top: 22px;
     left: 23px;
-    width: 37px;
-    height: 36px;
+    width: 57px;
+    height: 57px;
     padding: 0;
     margin: 0;
     cursor: pointer;
+    font-size: 46px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: -10px;
+    background-color: #DADCDC;
+    opacity: 0.5;
 }
 
     .tn3e-show-albums:hover {
         background-position: -76px -39px;
+        background-color: #cdcdcd;
+        opacity: 1;
     }
 
 .tn3e-fullscreen {
@@ -340,3 +347,4 @@
 .cont-wrap {
     width: 960px;
 }
+.tn3e-image-in{ -webkit-transition-duration: 10ms;}

@@ -250,15 +250,18 @@
                 }
                 if (keys.right || keys.down) {
                     /* Right Arrow */
+                    
                     if ((newcell + 3) < cells.length) {
                         newcell += 3;
                     }
-                    else if (!loading) {
+
+                    if (!loading && (newcell + 15) > cells.length) {
                         /* We hit the right wall, add some more */
-                        page = page + 1;
+                        page = page + 2;
                         loading = true;
-                        flickr(function (images) {
-                            jQuery.each(images, snowstack_addimage);                            loading = false;
+                        flickr(function(images) {
+                            jQuery.each(images, snowstack_addimage);
+                            loading = false;
                         }, page);
                     }
                 }
@@ -281,7 +284,8 @@
                     if ((newcell + 3) < cells.length) {
                         newcell += 3;
                     }
-                    else if (!loading) {
+                    
+                    if (!loading && (newcell + 15) > cells.length) {
                         /* We hit the right wall, add some more */
                         page = page + 1;
                         loading = true;
@@ -320,7 +324,7 @@
                         var doTimer = function () {
                             updatekeys();
                             keytimer = setTimeout(doTimer, delay);
-                            delay = 300;
+                            delay = 60;
 
                         };
                         doTimer();
@@ -353,7 +357,7 @@
 
         function flickr(callback, page) {
             var apiHost = "http://localhost:43926";
-            var api = "/api/Gallery/Detail/" + page + "/1";
+            var api = "/api/Gallery/Details/" + page + "," + ++page + "/1";
             var album = "/Home/Album";
             var url = apiHost + api;
 
@@ -364,17 +368,27 @@
                 dataType: "jsonp",
                 jsonpCallback: "receive",
                 success: function(data) {
-
-                    var images = jQuery.map(data.photos, function(item) {
-                        return {
-                            thumb: apiHost + item.thumbnailUrl,
-                            zoom: apiHost + item.thumbnailUrl,
-                            link: apiHost + album + "?categoryId=" + data.categoryId + "photoId=" + item.id,
-                            categoryName: data.name,
-                            year: data.year,
-                        };
-                    });
-
+                    var images = [];
+                    for (var i = 0; i < data.length; i++) {
+                        for (var j = 0; j < data[i].photos.length; j++) {
+                            
+                            var item = data[i].photos[j];
+                            images.push({
+                                thumb: item ? apiHost + item.thumbnailUrl : "",
+                                zoom: item ? apiHost + item.thumbnailUrl : "",
+                                link: item ? apiHost + album + "?categoryId=" + data[i].id + "&photoId=" + item.id : "",
+                                categoryName: data[i] ? data[i].name : "",
+                                year: data[i] ? data[i].year : "",
+                            });
+                        }
+                    }
+                    //return {
+                    //    thumb: item ? apiHost + item.thumbnailUrl : "",
+                    //    zoom: item ? apiHost + item.thumbnailUrl : "",
+                    //    link: item ? apiHost + album + "?categoryId=" + data.id + "&photoId=" + item.id : "",
+                    //    categoryName: data ? data.name : "",
+                    //    year: data ? data.year : "",
+                    //};
                     callback(images);
                 }
             })
