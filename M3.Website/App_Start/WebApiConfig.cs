@@ -16,6 +16,12 @@ namespace M3.Website
             );
 
             config.Routes.MapHttpRoute(
+               name: "GalleryDetailsApi",
+               routeTemplate: "api/{controller}/Details/{id}/{pages}",
+               defaults: new { action = "Details", pages = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
                name: "GalleryPreviewApi",
                routeTemplate: "api/{controller}/Preview/{id}",
                defaults: new { action = "Preview", id = RouteParameter.Optional }

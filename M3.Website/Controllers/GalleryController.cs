@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Collections.Generic;
+using System.Web.Http;
 using M3.Configurations;
 using M3.Helpers;
 using M3.Models;
@@ -11,32 +12,22 @@ namespace M3.Website.Controllers
         [HttpGet]
         public Category Detail(int id, int page, string callback)
         {
-            var gallery = StorageHelper.GetGallery();
-            var category = gallery.Categories.Find(c => c.Id == id);
-            var pageSize = ConfigurationManager.WebsiteConfiguration.DetailPageSize;
-            var photosCount = category.Photos.Count;
-            var currentPageSize = pageSize;
-            var startId = pageSize * (page - 1);
-            if (startId > photosCount)
-            {
-                return null;
-            }
-            var maxFullPage = category.Photos.Count / pageSize;
-            if (page > maxFullPage)
-            {
-                currentPageSize = category.Photos.Count - pageSize * (page - 1);
-            }
-            var pagedCategory = new Category
-            {
-                Id = category.Id,
-                Name = category.Name,
-                Year = category.Year,
-                Page = page,
-                Cover = category.Photos[0],
-                Photos = category.Photos.GetRange(startId, currentPageSize)
-            };
+            return GalleryHelper.GetPagedCategory(id, page);
+        }
 
-            return pagedCategory;
+        // GET: api/Gallery/Details/1/3
+        [HttpGet]
+        public List<Category> Details(int id, string pages)
+        {
+            var categories = new List<Category>();
+
+            var intPages = StringHelper.GetIntPages(pages);
+
+            foreach (var page in intPages)
+            {
+                categories.Add(GalleryHelper.GetPagedCategory(id, page));
+            }
+            return categories;
         }
 
         // GET: api/Gallery/Preview/5
