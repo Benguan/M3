@@ -32,60 +32,86 @@
         var d_thumb = [];
         var d_thumbIndex = {};
 
-        d_albums["1"] = {
-            id: 1, name: "2014春游", page: 1, year: 2014,
-            cover: { id: 1, title: "第1页第1张", description: "第1张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/1.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/1.jpg" },
-            photos: [
-                 [{ id: 1, title: "第1页第1张", description: "第1张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/1.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/1.jpg" },
-                 { id: 2, title: "第1页第2张", description: "第2张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/2.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/2.jpg" },
-                 { id: 3, title: "第1页第2张", description: "第3张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/3.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/3.jpg" },
-                 { id: 4, title: "第1页第2张", description: "第4张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/4.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/4.jpg" },
-                 { id: 5, title: "第1页第2张", description: "第5张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/5.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/5.jpg" },
-                 { id: 6, title: "第1页第2张", description: "第6张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/6.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/6.jpg" },
-                 { id: 7, title: "第1页第2张", description: "第7张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/7.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/7.jpg" },
-                 { id: 8, title: "第1页第2张", description: "第8张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/8.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/8.jpg" },
-                 { id: 9, title: "第1页第2张", description: "第9张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/9.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/9.jpg" },
-                 { id: 10, title: "第1页第2张", description: "第10张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/10.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/10.jpg" },
-                 { id: 11, title: "第1页第2张", description: "第11张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/11.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/11.jpg" },
-                 { id: 12, title: "第1页第2张", description: "第12张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/12.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/12.jpg" },
-                 { id: 13, title: "第1页第2张", description: "第13张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/13.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/13.jpg" },
-                 { id: 14, title: "第1页第2张", description: "第14张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/14.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/14.jpg" },
-                 { id: 15, title: "第1页第2张", description: "第15张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/15.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/15.jpg" },
-                 { id: 16, title: "第1页第2张", description: "第16张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/16.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/16.jpg" },
-                 { id: 17, title: "第1页第2张", description: "第17张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/17.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/17.jpg" },
-                 { id: 18, title: "第1页第2张", description: "第18张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/18.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/18.jpg" },
-                 { id: 19, title: "第1页第2张", description: "第19张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/19.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/19.jpg" },
-                 { id: 20, title: "第1页第2张", description: "第20张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/20.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/20.jpg" }],
-            ]
-        };
+        //d_albums["1"] = {
+        //    id: 1, name: "2014春游", page: 1, year: 2014,
+        //    cover: { id: 1, title: "第1页第1张", description: "第1张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/1.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/1.jpg" },
+        //    photos: [
+        //         [{ id: 1, title: "第1页第1张", description: "第1张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/1.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/1.jpg" },
+        //         { id: 2, title: "第1页第2张", description: "第2张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/2.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/2.jpg" },
+        //         { id: 3, title: "第1页第2张", description: "第3张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/3.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/3.jpg" },
+        //         { id: 4, title: "第1页第2张", description: "第4张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/4.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/4.jpg" },
+        //         { id: 5, title: "第1页第2张", description: "第5张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/5.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/5.jpg" },
+        //         { id: 6, title: "第1页第2张", description: "第6张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/6.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/6.jpg" },
+        //         { id: 7, title: "第1页第2张", description: "第7张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/7.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/7.jpg" },
+        //         { id: 8, title: "第1页第2张", description: "第8张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/8.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/8.jpg" },
+        //         { id: 9, title: "第1页第2张", description: "第9张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/9.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/9.jpg" },
+        //         { id: 10, title: "第1页第2张", description: "第10张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/10.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/10.jpg" },
+        //         { id: 11, title: "第1页第2张", description: "第11张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/11.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/11.jpg" },
+        //         { id: 12, title: "第1页第2张", description: "第12张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/12.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/12.jpg" },
+        //         { id: 13, title: "第1页第2张", description: "第13张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/13.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/13.jpg" },
+        //         { id: 14, title: "第1页第2张", description: "第14张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/14.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/14.jpg" },
+        //         { id: 15, title: "第1页第2张", description: "第15张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/15.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/15.jpg" },
+        //         { id: 16, title: "第1页第2张", description: "第16张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/16.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/16.jpg" },
+        //         { id: 17, title: "第1页第2张", description: "第17张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/17.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/17.jpg" },
+        //         { id: 18, title: "第1页第2张", description: "第18张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/18.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/18.jpg" },
+        //         { id: 19, title: "第1页第2张", description: "第19张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/19.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/19.jpg" },
+        //         { id: 20, title: "第1页第2张", description: "第20张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/20.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/20.jpg" }],
+        //    ]
+        //};
 
-        function loadImages() {
+        function loadImages(handler) {
 
             currentPage = currentPage ? currentPage : 1;
 
             if (d_albums[currentAlbumId] && d_albums[currentAlbumId].photos[currentPage - 1]) {
                 var albums = d_albums[currentAlbumId];
                 callback({
-                    id: albums.id, name: albums.name, cover: albums.cover,
+                    id: albums.id,
+                    name: albums.name,
+                    cover: albums.cover,
                     photos: albums.photos[currentPage - 1]
-                })
+                });
             } else {
-                var param = currentpage + "/" + currentAlbumId;
-                $.ajax({ url: opts.baseUrl + "api/gallery/detail/" + param, processData: false })
-                    .done(function (response) {
+                var param = currentAlbumId + '/' + currentPage;
+                function proxy(d) {
+                    return d;
+                };
+
+                $.ajax({
+                    url: opts.baseUrl + "api/gallery/detail/" + param,
+                    processData: false,
+                    dataType: "jsonp",
+                    jsonpCallback: "proxy",
+                    success: function (response) {
                         if (response) {
                             callback(response);
+                            handler && handler(response);
                             console.log("ajax success!");
-                        }
-                        else {
+                        } else {
                             console.log("ajax data error! pls checked!");
                         }
-                    }.fail(function () {
-                        console.log("ajax error! pls checked!");
-                    }));
+                    }
+                });
+
+                /*
+                $.ajax({
+                    url: opts.baseUrl + "api/gallery/detail/" + param,
+                    processData: false,
+                    dataType: "jsonp",
+                    jsonpCallback: 'proxy'
+                }).done(function (response) {
+                    if (response) {
+                        callback(response);
+                        console.log("ajax success!");
+                    }
+                    else {
+                        console.log("ajax data error! pls checked!");
+                    }
+                }.fail(function () {
+                    console.log("ajax error! pls checked!");
+                }));
+                */
             }
-
-
         }
 
         function callback(albums) {
@@ -95,6 +121,12 @@
                     photos: albums.photos
                 };
             } else {
+                if (d_albums.photos == null) {
+                    d_albums.photos = {};
+                }
+                if (d_albums.photos[albums.page] == null) {
+                    d_albums.photos[albums.page] = [];
+                }
                 d_albums.photos[albums.page].push(albums.photos);
             }
             pushThumbs(albums.photos);
@@ -138,7 +170,7 @@
             var liOffset = thumb_li.offset();
             j_thumb_ul.animate({
                 top: "-" + i * 75 + "px"
-            }, 200)
+            }, 200);
 
             j_navPrev.click(showPrevItem);
             j_navNext.click(showNextItem);
@@ -287,18 +319,18 @@
                             <div class="tn3e-image-ins" style="position: absolute; width: 100%; height: 100%;">\
                                 <div class="tn3e-image-in" style="position: absolute; overflow: hidden; visibility: visible; width: 770px; height: 300.885416666667px; left: 0px;">\
                                     <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;">\
-                                        <img src="css/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
+                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
                                     </div>\
                                 </div>\
                             </div>\
                             <div class="tn3-in-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px; display: block;">\
-                                <div class="tn3e-control-bar tn3_v tn3_h tn3_o" style="top: 110.5px; left: 263.5px; display: block; opacity: 1;">\
+                                <div class="tn3e-control-bar tn3_v tn3_h tn3_o" style="top: 110.5px; left: 263.5px; display: block; opacity: 0;">\
                                     <div class="tn3e-fullscreen" title="Maximize"></div>\
                                     <div class="tn3e-play" title="Start Slideshow"></div>\
                                     <div class="tn3e-show-albums" title="Album List"></div>\
                                 </div>\
                                 <div class="tn3e-preloader" style="display: none;">\
-                                    <img src="css/preload.gif">\
+                                    <img src="/Resources/images/album/preload.gif">\
                                 </div>\
                                 <div class="tn3e-timer" style="display: none;"></div>\
                             </div>\
@@ -321,6 +353,26 @@
                 }
             });
 
+            var showControllBar = function(control) {
+                controllBarStatus = true;
+                console.log("over:" + controllBarStatus);
+                control.animate({ opacity: "+=1" }, 100);
+            };
+            var hideControllBar = function (control) {
+                controllBarStatus = false;
+                setTimeout(function () {
+                    console.log("out:" + controllBarStatus);
+                    if (!controllBarStatus) {
+                        control.animate({ opacity: "-=1" }, 100);
+                    }
+                }, 400);
+            };
+            j_controlbar.mouseover(function () {
+                showControllBar($(this));
+            });
+            j_controlbar.mouseout(function () {
+                hideControllBar($(this));
+            });
             j_fullscreen.click(function () {
                 opts.fullscreen = !opts.fullscreen;
                 var escHandle = function (e) {
@@ -329,7 +381,7 @@
                         exitToFullscreen();
                     }
                 };
-                    
+
                 var toFullscreen = function () {
                     $(this).addClass("tn3e-fullscreen-active");
                     var docWidth = $(document).width();
@@ -356,22 +408,22 @@
 
                     if (thumb.height) {
                         if (thumb.height > lheight) {
-                            fullImg.css({ height: lheight })
+                            fullImg.css({ height: lheight });
                         } else {
-                            fullImg.css({ height: thumb.height })
+                            fullImg.css({ height: thumb.height });
                         }
                     } else {
-                        fullImg.css({ height: lheight })
+                        fullImg.css({ height: lheight });
                     }
 
                     if (thumb.width) {
-                        if (thumb.width > lheight) {
-                            fullImg.css({ width: lwidth })
+                        if (thumb.width > lwidth) {
+                            fullImg.css({ width: lwidth });
                         } else {
-                            fullImg.css({ width: thumb.width })
+                            fullImg.css({ width: thumb.width });
                         }
                     } else {
-                        fullImg.css({ width: lwidth })
+                        fullImg.css({ width: lwidth });
                     }
 
                     j_insFullImage.css({
@@ -385,6 +437,12 @@
                     });
                     j_thumb.css({
                         height: docHeight - 95,
+                    });
+
+                  
+                    j_controlbar.css({
+                        top: (j_gallery.height() / 2) - j_controlbar.height() + "px",
+                        left: (j_gallery.width() / 2) - j_controlbar.width() + "px",
                     });
 
                     launchFullscreen(j_gallery.get(0));
@@ -413,23 +471,24 @@
                     var thumb = d_thumb[iterator];
                     if (thumb.height) {
                         if (thumb.height > lheight) {
-                            fullImg.css({ height: lheight })
+                            fullImg.css({ height: lheight });
                         } else {
-                            fullImg.css({ height: thumb.height })
+                            fullImg.css({ height: thumb.height });
                         }
                     } else {
-                        fullImg.css({ height: lheight })
+                        fullImg.css({ height: lheight });
                     }
 
                     if (thumb.width) {
                         if (thumb.width > lheight) {
-                            fullImg.css({ width: lwidth })
+                            fullImg.css({ width: lwidth });
                         } else {
-                            fullImg.css({ width: thumb.width })
+                            fullImg.css({ width: thumb.width });
                         }
                     } else {
-                        fullImg.css({ width: lwidth })
+                        fullImg.css({ width: lwidth });
                     }
+
                     j_insFullImage.css({
                         width: 770,
                         height: 300,
@@ -442,6 +501,10 @@
                     j_thumb.css({
                         height: 297,
                     });
+                    j_controlbar.css({
+                        top : "110.5px",
+                        left: "263.5px"
+                    });
                     exitFullscreen(j_gallery.get(0));
                     $(document).off('keyup', escHandle);
                 };
@@ -451,9 +514,10 @@
                     exitToFullscreen();
                 }
             });
-
             j_gallery.append(strip);
         };
+
+        var controllBarStatus;
 
         function launchFullscreen(element) {
             if (element.requestFullscreen) {
@@ -506,13 +570,32 @@
             containter.empty();
             containter.append(j_gallery);
 
+            currentAlbumId = opts.enterIntoCategory;
+
             buildFilmstrip();
             buildBar();
             buildThumbs();
-            loadImages();
 
+
+            var firstShowItem = function () {
+                if (d_thumb.length > 0) {
+                    if (opts.enterIntoPhoto && d_thumbIndex[opts.enterIntoPhoto]) {
+                        showItem(opts.enterIntoPhoto, { showImmediately: true });
+                    } else {
+                        showItem(d_thumb[0].id, { showImmediately: true });
+                    }
+                }
+            };
+
+            loadImages(firstShowItem);
+
+            // show the enter into photo.
             if (d_thumb.length > 0) {
-                showItem(d_thumb[0].id, { showImmediately: true });
+                if (opts.enterIntoPhoto && d_thumbIndex[opts.enterIntoPhoto]) {
+                    showItem(opts.enterIntoPhoto, { showImmediately: true });
+                } else {
+                    showItem(d_thumb[0].id, { showImmediately: true });
+                }
             }
 
             if (opts.autoPlay) {
@@ -526,7 +609,7 @@
     };
 
     $.fn.galleryView.defaults = {
-        baseUrl: "http://localhost:43926/",
+        baseUrl: "/",
         transition_speed: 500,
         transition_interval: 2000,
         overlay_opacity: 0.6,
@@ -534,6 +617,8 @@
         pause: false,
         autoPlay: false,
         fullscreen: false,
-        height: 395
+        height: 395,
+        enterIntoCategory: 1,
+        enterIntoPhoto: 1
     };
 })(jQuery);
