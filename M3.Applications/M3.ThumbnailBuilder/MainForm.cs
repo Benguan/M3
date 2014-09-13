@@ -16,7 +16,6 @@ namespace M3.ThumbnailBuilder
         {
             InitializeComponent();
             SourceFolderTextBox.Text = ConfigurationManager.ThumbnailBuilderConfiguration.SourceFolderPath;
-            TargetFolderTextBox.Text = ConfigurationManager.ThumbnailBuilderConfiguration.TargetFolderPath;
         }
 
         private void StartButton_Click(object sender, EventArgs e)
@@ -36,6 +35,7 @@ namespace M3.ThumbnailBuilder
             var photoMaxWidth = ConfigurationManager.ThumbnailBuilderConfiguration.PhotoMaxWidth;
             var photoMaxHeight = ConfigurationManager.ThumbnailBuilderConfiguration.PhotoMaxHeight;
 
+            var photosPath = Path.Combine(DirectoryHelper.GetSolutionDirectoryPath(AppDomain.CurrentDomain.BaseDirectory), ConfigurationManager.ThumbnailBuilderConfiguration.TargetFolderPath);
 
             foreach (var folder in folders)
             {
@@ -60,10 +60,10 @@ namespace M3.ThumbnailBuilder
                     foreach (var file in files)
                     {
                         var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
-                        var thumbnailFullPath = Path.Combine(TargetFolderTextBox.Text, thumbnailFolder, thumbnailFileNameWithFolder);
+                        var thumbnailFullPath = Path.Combine(photosPath, thumbnailFolder, thumbnailFileNameWithFolder);
                         var thumbnailPhotoInfo = ImageHelper.GetThumbnail(thumbnailMaxWidth, thumbnailMaxHeight, file.FullName, thumbnailFullPath, false);
                         var normalFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
-                        var normalFullPath = Path.Combine(TargetFolderTextBox.Text, normalFolder, normalFileNameWithFolder);
+                        var normalFullPath = Path.Combine(photosPath, normalFolder, normalFileNameWithFolder);
                         var normalPhotoInfo = ImageHelper.GetThumbnail(photoMaxWidth, photoMaxHeight, file.FullName, normalFullPath, false);
 
                         photoId++;
