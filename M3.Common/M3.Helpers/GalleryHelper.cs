@@ -32,7 +32,7 @@ namespace M3.Helpers
                 Photos = category.Photos.GetRange(startId, currentPageSize)
             };
 
-            for (var i = 0; i < pageSize - pagedCategory.Photos.Count; i++)
+            for (var i = 0; i < pageSize - currentPageSize; i++)
             {
                 pagedCategory.Photos.Add(null);
             }
