@@ -1,7 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/BaseLayout.cshtml";
+    var categoryId = ViewData["CategoryId"];
+    var photoId = ViewData["PhotoId"];
 }
+
 @section Styles
 {
     <link href="~/Resources/css/album/vertical.css" rel="stylesheet" />
@@ -10,6 +13,8 @@
 <div class="container body-content cont-wrap">
     <div id="content-wrap">
         <div id="content">
+            @Html.Hidden("enterIntoCategory", categoryId)
+            @Html.Hidden("enterIntoPhoto", photoId)
             <div class="mygallery2">
             </div>
         </div>

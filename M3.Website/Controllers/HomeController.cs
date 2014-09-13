@@ -9,8 +9,10 @@ namespace M3.Controllers
             return View();
         }
 
-        public ActionResult Album()
+        public ActionResult Album(int categoryId = 1, int photoId = 1)
         {
+            ViewData["CategoryId"] = categoryId;
+            ViewData["PhotoId"] = photoId;
             return View();
         }
 
