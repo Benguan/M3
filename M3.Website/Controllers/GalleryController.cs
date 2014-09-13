@@ -12,7 +12,7 @@ namespace M3.Website.Controllers
         [HttpGet]
         public Category Detail(int id, int page, string callback)
         {
-            return GalleryHelper.GetPagedCategory(id, page);
+            return GalleryHelper.GetPagedCategory(id, page, false);
         }
 
         // GET: api/Gallery/Details/1/3
@@ -25,7 +25,7 @@ namespace M3.Website.Controllers
 
             foreach (var id in idList)
             {
-                categories.Add(GalleryHelper.GetPagedCategory(id, page));
+                categories.Add(GalleryHelper.GetPagedCategory(id, page, true));
             }
             return categories;
         }
