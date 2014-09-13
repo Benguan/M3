@@ -37,13 +37,12 @@
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    text-align: center;
 }
 
 div.origin
 {
-    left: 50%;
-    top: 50%;
+    left: 20%;
+    top: 40%;
 }
 
 div#camera
@@ -126,5 +125,3 @@ div.reflection.selected .mover
 #stack.view{
     margin-top:50px;	
 }
-
-.container .wall { min-height: 1000px;}

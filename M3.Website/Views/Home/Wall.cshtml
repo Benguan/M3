@@ -152,7 +152,7 @@
             //var angle = Math.min(Math.max(dx / (CXSPACING * 3.0), -1), 1) * 45;
 
             //var angle = dx>0?30:-30;
-            var angle = 30;
+            var angle = newIndex == 1 ? 0 : 30;
 
             camera.style.webkitTransform = "rotateY(" + angle + "deg)";
             camera.style.webkitTransitionDuration = "0ms";
@@ -276,7 +276,7 @@
                 updateStack(newcell, magnifyMode);
             }
 
-            var delay = 100;
+            var delay = 300;
 
             function keycheck() {
                 if (keys.left || keys.right || keys.up || keys.down) {
@@ -284,6 +284,8 @@
                         var doTimer = function () {
                             updatekeys();
                             keytimer = setTimeout(doTimer, delay);
+                            delay = 60;
+
                         };
                         doTimer();
                     }
