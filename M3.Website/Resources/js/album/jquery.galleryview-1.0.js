@@ -217,7 +217,7 @@
             for (var i = 0; i < photos.length; i++) {
                 var thumb = $('<li class="tn3e-thumb" style="float: none; opacity: 1;" data-photo-id="' + photos[i].id + '">\
                                         <div style="width: 114px; height: 72px; position: absolute; opacity: 0.5; background-color: rgb(0, 0, 0);"></div>\
-                                        <img src="' + photos[i].thumbnailUrl + '"></li>');
+                                        <img style="max-width: 114px; max-height: 72px;" src="' + photos[i].thumbnailUrl + '"></li>');
                 thumb.click(function () {
                     var pid = $(this).data("photo-id");
                     showItem(pid);
