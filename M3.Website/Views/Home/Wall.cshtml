@@ -287,7 +287,7 @@
                     
                     if (!loading && (newcell + 15) > cells.length) {
                         /* We hit the right wall, add some more */
-                        page = page + 1;
+                        page = page + 2;
                         loading = true;
                         flickr(function (images) {
                             jQuery.each(images, snowstack_addimage);                            loading = false;
