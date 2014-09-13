@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using M3.Configurations;
 using M3.Helpers;
@@ -12,23 +13,36 @@ namespace M3.ThumbnailBuilder
     {
         private string thumbnailFolder = "thumbnail";
         private string normalFolder = "normal";
+        private static int progress = 0;
+        private static int totalFilesCount = 0;
+        private static int doneFilesCount = 0;
+        private DirectoryInfo sourceFolder;
+        private delegate void UpdateProgressEventHandler(int v);
         public MainForm()
         {
             InitializeComponent();
             SourceFolderTextBox.Text = ConfigurationManager.ThumbnailBuilderConfiguration.SourceFolderPath;
+            sourceFolder = new DirectoryInfo(SourceFolderTextBox.Text);
+            totalFilesCount = sourceFolder.GetFiles("*.jpg", SearchOption.AllDirectories).Length;
         }
 
         private void StartButton_Click(object sender, EventArgs e)
+        {
+            new Thread(new ThreadStart(Build)).Start();
+        }
+
+        private void Build()
         {
             var gallery = new Gallery
             {
                 Categories = new List<Category>()
             };
-            var sourceFolder = new DirectoryInfo(SourceFolderTextBox.Text);
-            var fileCount = 0;
+
             var startTime = DateTime.Now;
             var year = 0;
             var folders = sourceFolder.GetDirectories();
+
+
 
             var thumbnailMaxWidth = ConfigurationManager.ThumbnailBuilderConfiguration.ThumbnailMaxWidth;
             var thumbnailMaxHeight = ConfigurationManager.ThumbnailBuilderConfiguration.ThumbnailMaxHeight;
@@ -79,7 +93,9 @@ namespace M3.ThumbnailBuilder
 
                         category.Photos.Add(photo);
 
-                        fileCount++;
+                        doneFilesCount++;
+                        progress = 100 * doneFilesCount / totalFilesCount;
+                        Invoke(new UpdateProgressEventHandler(UpdateProgress), progress);
                     }
                 }
                 gallery.Categories.Add(category);
@@ -95,7 +111,12 @@ namespace M3.ThumbnailBuilder
 
             StorageHelper.SaveGallery(gallery);
 
-            MessageBox.Show(string.Format("Done!\n共转换{0}个文件，耗时{1}秒", fileCount, (DateTime.Now - startTime).TotalSeconds), "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(string.Format("Done!\n共转换{0}个文件，耗时{1}秒", doneFilesCount, (DateTime.Now - startTime).TotalSeconds), "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void UpdateProgress(int v)
+        {
+            ProgressBar.Value = v;
         }
     }
 }
