@@ -12,19 +12,8 @@ namespace M3.Helpers
         static StorageHelper()
         {
             var currentDirectory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            var parent = currentDirectory;
-            while (parent != null && parent.Name != "M3.Applications" && parent.Name != "M3.Website")
-            {
-                parent = parent.Parent;
-            }
-            if (parent != null)
-            {
-                StorageFolderPath = Path.Combine(parent.Parent.FullName, ConfigurationManager.CommonConfiguration.StorageFolderPath);
-            }
-            else
-            {
-                StorageFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ConfigurationManager.CommonConfiguration.StorageFolderPath);
-            }
+            var solutionDirectoryPath = DirectoryHelper.GetSolutionDirectoryPath(AppDomain.CurrentDomain.BaseDirectory);
+            StorageFolderPath = Path.Combine(solutionDirectoryPath, ConfigurationManager.CommonConfiguration.StorageFolderPath);
         }
 
         private static bool Save(object o, string storageName)
