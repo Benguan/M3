@@ -1,6 +1,5 @@
 ﻿@{
     var actionName = ViewContext.RouteData.Values["action"].ToString();
-    var navbarHomeStyle = (actionName == "Index") ? "active" : string.Empty;
     var navbarWallStyle = (actionName == "Wall") ? "active" : string.Empty;
     var navbarAlbumStyle = (actionName == "Album") ? "active" : string.Empty;
     var navbarAboutStyle = (actionName == "About") ? "active" : string.Empty;
@@ -16,7 +15,7 @@
     <link href="~/Resources/ThirdParty/Bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Resources/ThirdParty/FontAwesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Resources/css/site.css" rel="stylesheet" />
-<script src="~/Resources/ThirdParty/jQuery/2.1.1/jquery-2.1.1.min.js"></script>
+    <script src="~/Resources/ThirdParty/jQuery/2.1.1/jquery-2.1.1.min.js"></script>
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -42,17 +41,19 @@
 
     @RenderBody()
 
-    <div class="container footer-content">
-        <hr />
-        <footer>
-            <div class="container">
-                <p class="text-center">Powered by M3 Team</p>
-                <p class="text-center">&copy; @DateTime.Now.Year <a href="http://www.newegg.com/">Newegg</a>. All Rights Reserved.</p>
-            </div>
-        </footer>
-    </div>
+    @if (actionName != "Wall")
+    {
+        <div class="container footer-content">
+            <hr />
+            <footer>
+                <div class="container">
+                    <p class="text-center">Powered by M3 Team</p>
+                    <p class="text-center">&copy; @DateTime.Now.Year <a href="http://www.newegg.com/">Newegg</a>. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </div>
+    }
 
-    
     <script src="~/Resources/ThirdParty/Bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     @RenderSection("Scripts", required: false)
