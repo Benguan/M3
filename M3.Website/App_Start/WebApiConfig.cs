@@ -12,19 +12,19 @@ namespace M3.Website
             config.Routes.MapHttpRoute(
                name: "GalleryDetailApi",
                routeTemplate: "api/{controller}/Detail/{id}/{page}",
-               defaults: new { action = "Detail", page = RouteParameter.Optional }
+               defaults: new { action = "Detail" }
             );
 
             config.Routes.MapHttpRoute(
                name: "GalleryDetailsApi",
-               routeTemplate: "api/{controller}/Details/{id}/{pages}",
-               defaults: new { action = "Details", pages = RouteParameter.Optional }
+               routeTemplate: "api/{controller}/Details/{ids}/{page}",
+               defaults: new { action = "Details" }
             );
 
             config.Routes.MapHttpRoute(
                name: "GalleryPreviewApi",
                routeTemplate: "api/{controller}/Preview/{id}",
-               defaults: new { action = "Preview", id = RouteParameter.Optional }
+               defaults: new { action = "Preview" }
             );
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
