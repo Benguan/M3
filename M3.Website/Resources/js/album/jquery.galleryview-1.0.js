@@ -233,8 +233,8 @@
             var strip = $('<div class="tn3e-image" style="width: 770px; height: 300.885416666667px; overflow: hidden; position: relative;">\
                             <div class="tn3e-image-ins" style="position: absolute; width: 100%; height: 100%;">\
                                 <div class="tn3e-image-in" style="position: absolute; overflow: hidden; visibility: visible; width: 770px; height: 300.885416666667px; left: 0px;">\
-                                    <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;">\
-                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" style="max-width: 770px;">\
+                                    <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;text-align:center;marin:0 auto">\
+                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" style="max-width: 770px;max-height:300px">\
                                     </div>\
                                 </div>\
                             </div>\
@@ -334,25 +334,14 @@
                     var lwidth = docWidth - 95;
                     var lheight = docHeight - 180;
 
-                    if (thumb.width > thumb.height) {
-                        if (thumb.width > lwidth) {
-                            fullImg.css({ "max-width": lwidth });
-                        } else {
-                            fullImg.css({ "max-width": thumb.width });
-                        }
-                    } else {
-                        if (thumb.height > lheight) {
-                            fullImg.css({ "max-height": lheight });
-                        } else {
-                            fullImg.css({ "max-height": thumb.height });
-                        }
-                    }
+                    fullImg.css({ "max-width": lwidth });
+                    fullImg.css({ "max-height": lheight });
+
 
                     j_insFullImage.css({
                         width: docWidth - 180,
                         height: docHeight - 95,
-                        top: (docHeight - 95 - fullImg.height()) / 2,
-                        left: (docWidth - 180 - fullImg.width()) / 2,
+                        top: (docHeight - 95 - fullImg.height()) / 2
                     });
                     j_thumb_warp.css({
                         height: docHeight - 95,
@@ -396,26 +385,13 @@
                     var lwidth = 770;
 
                     var thumb = d_thumb[iterator];
-
-                    if (thumb.width > thumb.height) {
-                        if (thumb.width > lwidth) {
-                            fullImg.css({ "max-width": lwidth });
-                        } else {
-                            fullImg.css({ "max-width": thumb.width });
-                        }
-                    } else {
-                        if (thumb.height > lheight) {
-                            fullImg.css({ "max-height": lheight });
-                        } else {
-                            fullImg.css({ "max-height": thumb.height });
-                        }
-                    }
+                    fullImg.css({ "max-width": lwidth });
+                    fullImg.css({ "max-height": lheight });
 
                     j_insFullImage.css({
                         width: 770,
                         height: 300,
-                        left: 0,
-                        top: 0
+                        top:0
                     });
                     j_thumb_warp.css({
                         height: 297,
