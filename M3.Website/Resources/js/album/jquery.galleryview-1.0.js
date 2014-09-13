@@ -15,7 +15,7 @@
         var j_fullscreen;
         var j_play;
         var j_rotate;
-        var angle = 90;
+        var angle = 0;
 
         var d_albums = {};
         var currentPage = 1;
@@ -106,7 +106,9 @@
         }
 
         function showItem(id, param) {
-            angle = 90;
+            angle = 0;
+            j_ins.find("img").css("-webkit-transform", "");
+            
             //Disable next/prev buttons until transition is complete
             j_navNext.off('click');
             j_navPrev.off('click');
@@ -257,10 +259,9 @@
             j_rotate = strip.find(".tn3e-show-albums");
             
             j_rotate.click(function () {
+                angle = angle + 90;
                 var transformAngle = "rotate(" + angle + "deg)";
                 j_ins.find("img").css("-webkit-transform", transformAngle);
-                angle = angle + 90;
-
             });
             j_play = strip.find(".tn3e-play");
             if (opts.autoPlay) {
