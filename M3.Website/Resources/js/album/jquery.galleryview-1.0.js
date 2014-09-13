@@ -139,6 +139,9 @@
 
             var warpOffset = j_thumb_warp.offset();
             var liOffset = thumb_li.offset();
+            var theThumbOffset = j_thumb.offset();
+            var theThumbLiOffset = thumb_li.offset();
+
             j_thumb_ul.animate({
                 top: "-" + i * 75 + "px"
             }, 200);
@@ -228,7 +231,7 @@
                             <div class="tn3e-image-ins" style="position: absolute; width: 100%; height: 100%;">\
                                 <div class="tn3e-image-in" style="position: absolute; overflow: hidden; visibility: visible; width: 770px; height: 300.885416666667px; left: 0px;">\
                                     <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;">\
-                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
+                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" style="max-width: 770px;">\
                                     </div>\
                                 </div>\
                             </div>\
@@ -317,18 +320,7 @@
                     var fullImg = j_insFullImage.find("img");
                     var thumb = d_thumb[iterator];
 
-                    var lheight = docHeight - 95;
                     var lwidth = docWidth - 95;
-
-                    if (thumb.height) {
-                        if (thumb.height > lheight) {
-                            fullImg.css({ height: lheight });
-                        } else {
-                            fullImg.css({ height: thumb.height });
-                        }
-                    } else {
-                        fullImg.css({ height: lheight });
-                    }
 
                     if (thumb.width) {
                         if (thumb.width > lwidth) {
@@ -388,15 +380,6 @@
                     var lwidth = 770;
 
                     var thumb = d_thumb[iterator];
-                    if (thumb.height) {
-                        if (thumb.height > lheight) {
-                            fullImg.css({ height: lheight });
-                        } else {
-                            fullImg.css({ height: thumb.height });
-                        }
-                    } else {
-                        fullImg.css({ height: lheight });
-                    }
 
                     if (thumb.width) {
                         if (thumb.width > lheight) {
