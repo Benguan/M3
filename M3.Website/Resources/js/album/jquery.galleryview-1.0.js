@@ -321,15 +321,20 @@
                     var thumb = d_thumb[iterator];
 
                     var lwidth = docWidth - 95;
+                    var lheight = docHeight - 180;
 
-                    if (thumb.width) {
+                    if (thumb.width > thumb.height) {
                         if (thumb.width > lwidth) {
-                            fullImg.css({ width: lwidth });
+                            fullImg.css({ "max-width": lwidth });
                         } else {
-                            fullImg.css({ width: thumb.width });
+                            fullImg.css({ "max-width": thumb.width });
                         }
                     } else {
-                        fullImg.css({ width: lwidth });
+                        if (thumb.height > lheight) {
+                            fullImg.css({ "max-height": lheight });
+                        } else {
+                            fullImg.css({ "max-height": thumb.height });
+                        }
                     }
 
                     j_insFullImage.css({
@@ -381,14 +386,18 @@
 
                     var thumb = d_thumb[iterator];
 
-                    if (thumb.width) {
-                        if (thumb.width > lheight) {
-                            fullImg.css({ width: lwidth });
+                    if (thumb.width > thumb.height) {
+                        if (thumb.width > lwidth) {
+                            fullImg.css({ "max-width": lwidth });
                         } else {
-                            fullImg.css({ width: thumb.width });
+                            fullImg.css({ "max-width": thumb.width });
                         }
                     } else {
-                        fullImg.css({ width: lwidth });
+                        if (thumb.height > lheight) {
+                            fullImg.css({ "max-height": lheight });
+                        } else {
+                            fullImg.css({ "max-height": thumb.height });
+                        }
                     }
 
                     j_insFullImage.css({
