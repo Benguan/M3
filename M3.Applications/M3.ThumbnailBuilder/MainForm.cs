@@ -22,12 +22,12 @@ namespace M3.ThumbnailBuilder
         {
             InitializeComponent();
             SourceFolderTextBox.Text = ConfigurationManager.ThumbnailBuilderConfiguration.SourceFolderPath;
-            sourceFolder = new DirectoryInfo(SourceFolderTextBox.Text);
-            totalFilesCount = sourceFolder.GetFiles("*.jpg", SearchOption.AllDirectories).Length;
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
+            sourceFolder = new DirectoryInfo(SourceFolderTextBox.Text);
+            totalFilesCount = sourceFolder.GetFiles("*.jpg", SearchOption.AllDirectories).Length;
             new Thread(new ThreadStart(Build)).Start();
         }
 
