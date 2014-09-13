@@ -9,10 +9,12 @@
         var j_panels;
         var j_pointer;
         var j_thumb;
+        var j_thumb_warp;
         var j_thumb_ul;
         var j_navNext;
         var j_navPrev;
         var j_ins;
+        var j_insFullImage;
         var j_controlbar;
         var j_fullscreen;
         var j_play;
@@ -82,6 +84,8 @@
                         console.log("ajax error! pls checked!");
                     }));
             }
+
+
         }
 
         function callback(albums) {
@@ -123,8 +127,17 @@
 
             iterator = i;
 
+
+            j_thumb_ul.find("li").removeClass("tn3e-thumb-over");
+            j_thumb_ul.find("li").find("div").css("opacity", "0.5");
+            var thumb_li = j_thumb_ul.find("li[data-photo-id=" + id + "]");
+            thumb_li.addClass("tn3e-thumb-over");
+            thumb_li.find("div").css("opacity", "0");
+
+            var warpOffset = j_thumb_warp.offset();
+            var liOffset = thumb_li.offset();
             j_thumb_ul.animate({
-                top: "-" + i * 72 + "px"
+                top: "-" + i * 75 + "px"
             }, 200)
 
             j_navPrev.click(showPrevItem);
@@ -246,6 +259,7 @@
                 "cursor": "auto",
                 "height": "300px"
             });
+            j_thumb_warp = j_thumb.find("div");
             j_thumb_ul = j_thumb.find("ul");
             j_gallery.append(j_thumb);
         };
@@ -273,7 +287,7 @@
                             <div class="tn3e-image-ins" style="position: absolute; width: 100%; height: 100%;">\
                                 <div class="tn3e-image-in" style="position: absolute; overflow: hidden; visibility: visible; width: 770px; height: 300.885416666667px; left: 0px;">\
                                     <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;">\
-                                        <img src="/Resources/images/album/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
+                                        <img src="css/grad.jpg" alt="Abstract lights" width="770" height="301" style="width: 770px; height: 301px;">\
                                     </div>\
                                 </div>\
                             </div>\
@@ -284,7 +298,7 @@
                                     <div class="tn3e-show-albums" title="Album List"></div>\
                                 </div>\
                                 <div class="tn3e-preloader" style="display: none;">\
-                                    <img src="/Resources/images/album/preload.gif">\
+                                    <img src="css/preload.gif">\
                                 </div>\
                                 <div class="tn3e-timer" style="display: none;"></div>\
                             </div>\
@@ -292,6 +306,7 @@
             j_ins = strip.find(".tn3e-image-in");
             j_controlbar = strip.find(".tn3e-control-bar");
             j_fullscreen = strip.find(".tn3e-fullscreen");
+            j_insFullImage = strip.find(".tn3e-full-image");
             j_play = strip.find(".tn3e-play");
             j_play.click(function () {
                 opts.autoPlay = !opts.autoPlay;
@@ -306,8 +321,161 @@
                 }
             });
 
+            j_fullscreen.click(function () {
+                opts.fullscreen = !opts.fullscreen;
+                var escHandle = function (e) {
+                    if (e.keyCode == 27 || e.which == 27) {
+                        exitFullscreen(j_gallery.get(0));
+                        exitToFullscreen();
+                    }
+                };
+                    
+                var toFullscreen = function () {
+                    $(this).addClass("tn3e-fullscreen-active");
+                    var docWidth = $(document).width();
+                    var docHeight = $(document).height();
+                    j_gallery.css({
+                        width: docWidth,
+                        height: docHeight
+                    });
+                    strip.css({
+                        width: docWidth - 180,
+                        height: docHeight - 95,
+                    });
+
+                    j_ins.css({
+                        width: docWidth - 180,
+                        height: docHeight - 95,
+                    });
+
+                    var fullImg = j_insFullImage.find("img");
+                    var thumb = d_thumb[iterator];
+
+                    var lheight = docHeight - 95;
+                    var lwidth = docWidth - 95;
+
+                    if (thumb.height) {
+                        if (thumb.height > lheight) {
+                            fullImg.css({ height: lheight })
+                        } else {
+                            fullImg.css({ height: thumb.height })
+                        }
+                    } else {
+                        fullImg.css({ height: lheight })
+                    }
+
+                    if (thumb.width) {
+                        if (thumb.width > lheight) {
+                            fullImg.css({ width: lwidth })
+                        } else {
+                            fullImg.css({ width: thumb.width })
+                        }
+                    } else {
+                        fullImg.css({ width: lwidth })
+                    }
+
+                    j_insFullImage.css({
+                        width: docWidth - 180,
+                        height: docHeight - 95,
+                        top: (docHeight - 95 - fullImg.height()) / 2,
+                        left: (docWidth - 180 - fullImg.width()) / 2,
+                    });
+                    j_thumb_warp.css({
+                        height: docHeight - 95,
+                    });
+                    j_thumb.css({
+                        height: docHeight - 95,
+                    });
+
+                    launchFullscreen(j_gallery.get(0));
+
+                    $(document).on('keyup', escHandle);
+                };
+                var exitToFullscreen = function () {
+                    $(this).removeClass("tn3e-fullscreen-active");
+                    j_gallery.css({
+                        width: 950,
+                        height: 395,
+                    });
+                    strip.css({
+                        width: 770,
+                        height: 300,
+                    });
+                    j_ins.css({
+                        width: 770,
+                        height: 300,
+                    });
+
+                    var fullImg = j_insFullImage.find("img");
+                    var lheight = 300;
+                    var lwidth = 770;
+
+                    var thumb = d_thumb[iterator];
+                    if (thumb.height) {
+                        if (thumb.height > lheight) {
+                            fullImg.css({ height: lheight })
+                        } else {
+                            fullImg.css({ height: thumb.height })
+                        }
+                    } else {
+                        fullImg.css({ height: lheight })
+                    }
+
+                    if (thumb.width) {
+                        if (thumb.width > lheight) {
+                            fullImg.css({ width: lwidth })
+                        } else {
+                            fullImg.css({ width: thumb.width })
+                        }
+                    } else {
+                        fullImg.css({ width: lwidth })
+                    }
+                    j_insFullImage.css({
+                        width: 770,
+                        height: 300,
+                        left: 0,
+                        top: 0
+                    });
+                    j_thumb_warp.css({
+                        height: 297,
+                    });
+                    j_thumb.css({
+                        height: 297,
+                    });
+                    exitFullscreen(j_gallery.get(0));
+                    $(document).off('keyup', escHandle);
+                };
+                if (opts.fullscreen) {
+                    toFullscreen();
+                } else {
+                    exitToFullscreen();
+                }
+            });
+
             j_gallery.append(strip);
         };
+
+        function launchFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        }
+
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
 
         function buildBar() {
             var next = '<div class="tn3e-next" title="Next Image"></div>';
@@ -365,6 +533,7 @@
         show_captions: false,
         pause: false,
         autoPlay: false,
+        fullscreen: false,
         height: 395
     };
 })(jQuery);
