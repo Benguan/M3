@@ -18,6 +18,8 @@
         var j_controlbar;
         var j_fullscreen;
         var j_play;
+        var j_rotate;
+        var angle = 90;
 
         // { album: "2014春游", id : 1, title: "春游", description : "2014春游",  cover: "1.gif", page: 1,
         //   photos : [   [{id: 1, title: "第1页第1张", description : "第1张", thumbnailUrl: "1.thumb.gif", normalUrl : "1.gif"},{id: 2, title: "第1页第2张", description : "第2张", thumbnailUrl: "2.thumb.gif", normalUrl : "2.gif"}],
@@ -136,6 +138,7 @@
         }
 
         function showItem(id, param) {
+            angle = 90;
             //Disable next/prev buttons until transition is complete
             j_navNext.off('click');
             j_navPrev.off('click');
@@ -327,7 +330,7 @@
                                 <div class="tn3e-control-bar tn3_v tn3_h tn3_o" style="top: 110.5px; left: 263.5px; display: block; opacity: 0;">\
                                     <div class="tn3e-fullscreen" title="Maximize"></div>\
                                     <div class="tn3e-play" title="Start Slideshow"></div>\
-                                    <div class="tn3e-show-albums" title="Album List"></div>\
+                                    <div class="tn3e-show-albums" title="Album List"><i class="fa fa-rotate-right"></i></div>\
                                 </div>\
                                 <div class="tn3e-preloader" style="display: none;">\
                                     <img src="/Resources/images/album/preload.gif">\
@@ -339,6 +342,14 @@
             j_controlbar = strip.find(".tn3e-control-bar");
             j_fullscreen = strip.find(".tn3e-fullscreen");
             j_insFullImage = strip.find(".tn3e-full-image");
+            j_rotate = strip.find(".tn3e-show-albums");
+            
+            j_rotate.click(function () {
+                var transformAngle = "rotate(" + angle + "deg)";
+                j_ins.find("img").css("-webkit-transform", transformAngle);
+                angle = angle + 90;
+
+            });
             j_play = strip.find(".tn3e-play");
             j_play.click(function () {
                 opts.autoPlay = !opts.autoPlay;
