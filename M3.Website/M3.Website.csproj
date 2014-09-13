@@ -137,6 +137,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Resources\css\wall.css" />
     <Content Include="Resources\images\album\bg.png" />
     <Content Include="Resources\images\album\grad.jpg" />
     <Content Include="Resources\images\album\preload.gif" />

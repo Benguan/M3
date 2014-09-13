@@ -16,6 +16,7 @@
     <link href="~/Resources/ThirdParty/Bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Resources/ThirdParty/FontAwesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Resources/css/site.css" rel="stylesheet" />
+<script src="~/Resources/ThirdParty/jQuery/2.1.1/jquery-2.1.1.min.js"></script>
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -27,11 +28,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("M3 Gallery", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("M3 Gallery", "Wall", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@navbarHomeStyle">@Html.ActionLink("主页", "Index", "Home")</li>
                     <li class="@navbarWallStyle">@Html.ActionLink("照片墙", "Wall", "Home")</li>
                     <li class="@navbarAlbumStyle">@Html.ActionLink("相册", "Album", "Home")</li>
                     <li class="@navbarAboutStyle">@Html.ActionLink("关于", "About", "Home")</li>
@@ -52,7 +52,7 @@
         </footer>
     </div>
 
-    <script src="~/Resources/ThirdParty/jQuery/2.1.1/jquery-2.1.1.min.js"></script>
+    
     <script src="~/Resources/ThirdParty/Bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     @RenderSection("Scripts", required: false)

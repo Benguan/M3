@@ -284,33 +284,23 @@ div.reflection.selected .mover
         //var angle = Math.min(Math.max(dx / (CXSPACING * 3.0), -1), 1) * 45;
 
         //var angle = dx>0?30:-30;
-        var angle = 0;
+        var angle = 30;
 
         camera.style.webkitTransform = "rotateY(" + angle + "deg)";
         camera.style.webkitTransitionDuration = "0ms";
 
-        /*
-        if (currentTimer)
-        {
-            clearTimeout(currentTimer);
-        }
-        
-        currentTimer = setTimeout(function ()
-        {
-            camera.style.webkitTransform = "rotateY(0)";
-            camera.style.webkitTransitionDuration = "1s";
-        }, 330);*/
     }
-
+    
     function snowstack_addimage(reln, info) {
+
+        console.log({ "reln": reln, "info": info });
+        
         var cell = {};
         var realn = cells.length;
         cells.push(cell);
 
         var x = Math.floor(realn / 3);
         var y = realn - x * 3;
-
-
 
         cell.info = info;
 
@@ -331,10 +321,9 @@ div.reflection.selected .mover
 
         img.src = info.thumb;
 
-
         jQuery("#stack").append(cell.div);
         if (y === 0 && (x % 3 === 0)) {
-            cell.title[0].innerHTML = "上海旅游节";
+            cell.title[0].innerHTML = info.year + " " + info.categoryName;
             jQuery("#title").append(cell.title);
         }
 
@@ -374,7 +363,7 @@ div.reflection.selected .mover
         snowstack_init();
 
         flickr(function (images) {
-            jQuery.each(images, snowstack_addimage);
+            jQuery.each(images, snowstack_addimage);            
             updateStack(1);
             loading = false;
         }, page);
@@ -403,8 +392,7 @@ div.reflection.selected .mover
                     page = page + 1;
                     loading = true;
                     flickr(function (images) {
-                        jQuery.each(images, snowstack_addimage);
-                        loading = false;
+                        jQuery.each(images, snowstack_addimage);                        loading = false;
                     }, page);
                 }
             }
@@ -458,44 +446,32 @@ div.reflection.selected .mover
     });
 
     function flickr(callback, page) {
-        var host = "http://localhost:43926/";
+        var apiHost = "http://localhost:43926/";
         var api = "api/Gallery/Detail/" + page + "/1";
-        var url = host + api;
+        var url = apiHost + api;
 
         jQuery.ajax({
             url: url,
             processData: false,
             cache: true,
             dataType: "jsonp",
-            jsonpCallback: "receive",
-            success: function (item) {
-                console.log(item);
+            jsonpCallback: "?",
+            success: function (data) {
+
+                var images = jQuery.map(data.photos, function(item) {
+                    return {
+                        thumb: apiHost + item.thumbnailUrl,
+                        zoom: apiHost + item.thumbnailUrl,
+                        link: "http://www.baidu.com",
+                        categoryName: data.name,
+                        year:data.year
+                    };
+                });
+
+                callback(images);
             }
         })
-        /*
-        jQuery.getJSON(url, function(data) 
-        {
-            var images = jQuery.map(data, function (item)
-            {
-    
-                return {
-                    categoryID : item.Id,
-                    year:item.Year,
-                    categoryName: item.Name,
-                    page: item.Page
-                }
-                return {
-                    thumb: item.url_s,
-                    zoom: 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '.jpg',
-                    link: 'http://www.flickr.com/photos/' + item.owner + '/' + item.id,
-                    categoryName:"上海旅游节"
-    
-    
-            });
-            console.log(images);
-            //callback(images);
-        });
-    */
+  
     }
 
 </script>
