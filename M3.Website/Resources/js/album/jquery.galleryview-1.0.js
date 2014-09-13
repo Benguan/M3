@@ -344,6 +344,11 @@
             j_fullscreen = strip.find(".tn3e-fullscreen");
             j_insFullImage = strip.find(".tn3e-full-image");
             j_play = strip.find(".tn3e-play");
+            if (opts.autoPlay) {
+                j_play.addClass("tn3e-play-active");
+            } else {
+                j_play.removeClass("tn3e-play-active");
+            }
             j_play.click(function () {
                 opts.autoPlay = !opts.autoPlay;
                 if (opts.autoPlay) {
@@ -623,11 +628,11 @@
     $.fn.galleryView.defaults = {
         baseUrl: "/",
         transition_speed: 500,
-        transition_interval: 2000,
+        transition_interval: 5000,
         overlay_opacity: 0.6,
         show_captions: false,
         pause: false,
-        autoPlay: false,
+        autoPlay: true,
         fullscreen: false,
         height: 395,
         enterIntoCategory: 1,
