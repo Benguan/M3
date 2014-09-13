@@ -2,12 +2,7 @@
 (function ($) {
     $.fn.galleryView = function (options) {
         var opts = $.extend($.fn.galleryView.defaults, options);
-        var paused = false;
         var j_gallery;
-        var j_filmstrip;
-        var j_frames;
-        var j_panels;
-        var j_pointer;
         var j_thumb;
         var j_thumb_warp;
         var j_thumb_ul;
@@ -20,16 +15,10 @@
         var j_fullscreen;
         var j_play;
 
-        // { album: "2014春游", id : 1, title: "春游", description : "2014春游",  cover: "1.gif", page: 1,
-        //   photos : [   [{id: 1, title: "第1页第1张", description : "第1张", thumbnailUrl: "1.thumb.gif", normalUrl : "1.gif"},{id: 2, title: "第1页第2张", description : "第2张", thumbnailUrl: "2.thumb.gif", normalUrl : "2.gif"}],
-        //                [{id: 3,title: "第2页第1张", description : "第1张", thumbnailUrl: "1.thumb.gif", normalUrl : "1.gif"}, {id: 4, title: "第2页第2张", description : "第2张", thumbnailUrl: "2.thumb.gif", normalUrl : "2.gif"}]
-        //            ]
-        // }
         var d_albums = {};
         var currentPage = 1;
         var currentAlbumId = 1;
         var iterator = 0;
-        var d_prev_album;
         var d_thumb = [];
         var d_thumbIndex = {};
 
@@ -93,25 +82,6 @@
                         }
                     }
                 });
-
-                /*
-                $.ajax({
-                    url: opts.baseUrl + "api/gallery/detail/" + param,
-                    processData: false,
-                    dataType: "jsonp",
-                    jsonpCallback: 'proxy'
-                }).done(function (response) {
-                    if (response) {
-                        callback(response);
-                        console.log("ajax success!");
-                    }
-                    else {
-                        console.log("ajax data error! pls checked!");
-                    }
-                }.fail(function () {
-                    console.log("ajax error! pls checked!");
-                }));
-                */
             }
         }
 
@@ -131,9 +101,6 @@
                 d_albums.photos[albums.page].push(albums.photos);
             }
             pushThumbs(albums.photos);
-        }
-
-        function showAlbum(album) {
         }
 
         function showItem(id, param) {
@@ -178,68 +145,6 @@
 
             j_navPrev.click(showPrevItem);
             j_navNext.click(showNextItem);
-
-            /*
-            //Slide either pointer or filmstrip, depending on transition method
-            if (slide_method == 'strip') {
-                //Stop filmstrip if it's currently in motion
-                j_filmstrip.stop();
-
-                //Determine distance between pointer (eventual destination) and target frame
-                var distance = getPos(j_frames[i]).left - (getPos(j_pointer[0]).left + 2);
-                var leftstr = (distance >= 0 ? '-=' : '+=') + Math.abs(distance) + 'px';
-
-                //Animate filmstrip and slide target frame under pointer
-                //If target frame is a duplicate, jump back to 'original' frame
-                j_filmstrip.animate({
-                    'left': leftstr
-                }, opts.transition_speed, opts.easing, function () {
-                    //Always ensure that there are a sufficient number of hidden frames on either
-                    //side of the filmstrip to avoid empty frames
-                    if (i > item_count) {
-                        i = i % item_count;
-                        iterator = i;
-                        j_filmstrip.css('left', '-' + ((opts.frame_width + frame_margin) * i) + 'px');
-                    } else if (i <= (item_count - strip_size)) {
-                        i = (i % item_count) + item_count;
-                        iterator = i;
-                        j_filmstrip.css('left', '-' + ((opts.frame_width + frame_margin) * i) + 'px');
-                    }
-
-                    if (!opts.fade_panels) {
-                        j_panels.hide().eq(i % item_count).show();
-                    }
-                    j_navPrev.click(showPrevItem);
-                    j_navNext.click(showNextItem);
-                });
-            } else if (slide_method == 'pointer') {
-                //Stop pointer if it's currently in motion
-                j_pointer.stop();
-                //Get position of target frame
-                var pos = getPos(j_frames[i]);
-                //Slide the pointer over the target frame
-                j_pointer.animate({
-                    'left': (pos.left - 2 + 'px')
-                }, opts.transition_speed, opts.easing, function () {
-                    if (!opts.fade_panels) {
-                        j_panels.hide().eq(i % item_count).show();
-                    }
-                    $('img.nav-prev').click(showPrevItem);
-                    $('img.nav-next').click(showNextItem);
-                    enableFrameClicking();
-                });
-            }
-
-          
-
-            if ($('a', j_frames[i])[0]) {
-                j_pointer.off('click').click(function () {
-                    var a = $('a', j_frames[i]).eq(0);
-                    if (a.attr('target') == '_blank') { window.open(a.attr('href')); }
-                    else { location.href = a.attr('href'); }
-                });
-            }
-              */
         };
         function showNextItem() {
             $(document).stopTime("transition");
@@ -592,7 +497,6 @@
             buildFilmstrip();
             buildBar();
             buildThumbs();
-
 
             var firstShowItem = function () {
                 if (d_thumb.length > 0) {
