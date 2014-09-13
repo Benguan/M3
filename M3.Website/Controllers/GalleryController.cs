@@ -17,13 +17,13 @@ namespace M3.Website.Controllers
 
         // GET: api/Gallery/Details/1/3
         [HttpGet]
-        public List<Category> Details(int id, string pages)
+        public List<Category> Details(string ids, int page)
         {
             var categories = new List<Category>();
 
-            var intPages = StringHelper.GetIntPages(pages);
+            var idList = StringHelper.GetIntList(ids);
 
-            foreach (var page in intPages)
+            foreach (var id in idList)
             {
                 categories.Add(GalleryHelper.GetPagedCategory(id, page));
             }

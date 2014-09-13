@@ -9,22 +9,22 @@ namespace M3.Helpers
             return path.Replace(@"\", "/");
         }
 
-        public static List<int> GetIntPages(string pages)
+        public static List<int> GetIntList(string stringNumbers)
         {
-            var stringPages = pages.Split(',');
-            var intPages = new List<int>();
-            foreach (var page in stringPages)
+            var stringNumbersArray = stringNumbers.Split(',');
+            var intList = new List<int>();
+            foreach (var stringNumber in stringNumbersArray)
             {
-                int intPage;
-                if (!string.IsNullOrEmpty(page))
+                int intNumber;
+                if (!string.IsNullOrEmpty(stringNumber))
                 {
-                    if (int.TryParse(page, out intPage))
+                    if (int.TryParse(stringNumber, out intNumber))
                     {
-                        intPages.Add(intPage);
+                        intList.Add(intNumber);
                     }
                 }
             }
-            return intPages;
+            return intList;
         }
     }
 }
