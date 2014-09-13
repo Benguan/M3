@@ -13,6 +13,7 @@
         var j_thumb_ul;
         var j_navNext;
         var j_navPrev;
+        var j_navPage;
         var j_ins;
         var j_insFullImage;
         var j_controlbar;
@@ -157,8 +158,11 @@
                 img.attr("src", thumb.normalUrl);
             }
 
-            iterator = i;
+            if (d_thumb.length > 0) {
+                j_navPage.html(i + 1 + " / " + (d_thumb.length));
+            }
 
+            iterator = i;
 
             j_thumb_ul.find("li").removeClass("tn3e-thumb-over");
             j_thumb_ul.find("li").find("div").css("opacity", "0.5");
@@ -239,7 +243,7 @@
         };
         function showNextItem() {
             $(document).stopTime("transition");
-            if (++iterator >= d_thumb.length - 1) { iterator = 0; }
+            if (++iterator >= d_thumb.length) { iterator = 0; }
             showItem(d_thumb[iterator].id);
             if (opts.autoPlay) {
                 $(document).everyTime(opts.transition_interval, "transition", function () {
@@ -438,6 +442,11 @@
                     j_thumb.css({
                         height: docHeight - 95,
                     });
+                  
+                    j_controlbar.css({
+                        top: (j_gallery.height() / 2) - j_controlbar.height() + "px",
+                        left: (j_gallery.width() / 2) - j_controlbar.width() + "px",
+                    });
 
                   
                     j_controlbar.css({
@@ -544,10 +553,13 @@
         function buildBar() {
             var next = '<div class="tn3e-next" title="Next Image"></div>';
             var prev = '<div class="tn3e-prev" title="Previous Image"></div>';
+            var page = '<div class="tn3e-page" title="Page"></div>';
             j_navNext = $(next);
             j_navPrev = $(prev);
+            j_navPage = $(page);
             j_gallery.append(j_navNext);
             j_gallery.append(j_navPrev);
+            j_gallery.append(j_navPage);
         };
 
         function mouseIsOverPanels(x, y) {

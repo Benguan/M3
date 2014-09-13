@@ -84,9 +84,17 @@
     cursor: pointer;
 }
 
-    .tn3e-next:hover {
-        background-position: -20px -23px;
-    }
+.tn3e-next:hover {
+    background-position: -20px -23px;
+}
+
+.tn3e-page {
+    position: absolute;
+    height: 17px;
+    right: 80px;
+    bottom: 27px;
+    cursor: pointer;
+}
 
 .tn3e-prev {
     position: absolute;
