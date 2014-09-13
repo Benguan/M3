@@ -30,7 +30,7 @@
             </div>
 
         </div>
-</div>
+    </div>
 
     <script type="text/javascript">
 
@@ -161,8 +161,6 @@
     
         function snowstack_addimage(reln, info) {
 
-            console.log({ "reln": reln, "info": info });
-        
             var cell = {};
             var realn = cells.length;
             cells.push(cell);
@@ -190,13 +188,13 @@
             img.src = info.thumb;
 
             jQuery("#stack").append(cell.div);
+            
             if (y === 0 && (x % 3 === 0)) {
                 cell.title[0].innerHTML = info.year + " " + info.categoryName;
                 jQuery("#title").append(cell.title);
             }
 
             if (y == 2) {
-                console.log({ "x": x, "y": y });
                 cell.reflection = jQuery('<div class="cell fader view reflection" style="opacity: 0"></div>').width(CWIDTH).height(CHEIGHT);
                 cell.reflection[0].style.webkitTransform = translate3d(x * CXSPACING, y * CYSPACING, 0);
 
@@ -244,13 +242,13 @@
 
             function updatekeys() {
                 var newcell = currentCell;
-                if (keys.left) {
+                if (keys.left || keys.up) {
                     /* Left Arrow */
                     if (newcell >= 3) {
                         newcell -= 3;
                     }
                 }
-                if (keys.right) {
+                if (keys.right || keys.down) {
                     /* Right Arrow */
                     if ((newcell + 3) < cells.length) {
                         newcell += 3;
@@ -264,27 +262,65 @@
                         }, page);
                     }
                 }
-                if (keys.up) {
-                    /* Up Arrow */
-                    newcell -= 1;
+
+                updateStack(newcell, magnifyMode);
+            }
+            
+            function updateKeyByWheel(wheel) {
+                var newcell = currentCell;
+                
+                if (wheel>0) {
+                    /* Left Arrow */
+                    if (newcell >= 3) {
+                        newcell -= 3;
+                    }
                 }
-                if (keys.down) {
-                    /* Down Arrow */
-                    newcell += 1;
+                
+                if (wheel<=0) {
+                    /* Right Arrow */
+                    if ((newcell + 3) < cells.length) {
+                        newcell += 3;
+                    }
+                    else if (!loading) {
+                        /* We hit the right wall, add some more */
+                        page = page + 1;
+                        loading = true;
+                        flickr(function (images) {
+                            jQuery.each(images, snowstack_addimage);                            loading = false;
+                        }, page);
+                    }
                 }
 
                 updateStack(newcell, magnifyMode);
             }
+            
+            var scrollFunc = function (e) {
+                var wheelDelta = 0;
+                if (e.wheelDelta) { //IE/Opera/Chrome
+                    wheelDelta = e.wheelDelta;
+                } else if (e.detail) { //Firefox
+                    wheelDelta = e.detail;
+                }
+
+                updateKeyByWheel(wheelDelta);
+            };
+
+            if (document.addEventListener) {
+                document.addEventListener('DOMMouseScroll', scrollFunc, false);
+            }//W3C
+            window.onmousewheel = document.onmousewheel = scrollFunc;//IE/Opera/Chro
+
 
             var delay = 300;
 
             function keycheck() {
+
                 if (keys.left || keys.right || keys.up || keys.down) {
                     if (keytimer === null) {
                         var doTimer = function () {
                             updatekeys();
                             keytimer = setTimeout(doTimer, delay);
-                            delay = 60;
+                            delay = 300;
 
                         };
                         doTimer();
@@ -318,6 +354,7 @@
         function flickr(callback, page) {
             var apiHost = "http://localhost:43926";
             var api = "/api/Gallery/Detail/" + page + "/1";
+            var album = "/Home/Album";
             var url = apiHost + api;
 
             jQuery.ajax({
@@ -326,24 +363,23 @@
                 cache: true,
                 dataType: "jsonp",
                 jsonpCallback: "receive",
-                success: function (data) {
+                success: function(data) {
 
                     var images = jQuery.map(data.photos, function(item) {
                         return {
                             thumb: apiHost + item.thumbnailUrl,
                             zoom: apiHost + item.thumbnailUrl,
-                            link: "http://www.baidu.com",
+                            link: apiHost + album + "?categoryId=" + data.categoryId + "photoId=" + item.id,
                             categoryName: data.name,
-                            year:data.year
+                            year: data.year,
                         };
                     });
 
                     callback(images);
                 }
             })
-  
         }
-
+        
     </script>
 
 </div>
