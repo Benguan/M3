@@ -73,8 +73,8 @@ namespace M3.ThumbnailBuilder
                             Title = Path.GetFileNameWithoutExtension(file.FullName),
                             Height = normalPhotoInfo.Height,
                             Width = normalPhotoInfo.Width,
-                            NormalUrl = "Resources/images/photos/" + normalFolder + "/" + StringHelper.GetUriFromPath(normalFileNameWithFolder),
-                            ThumbnailUrl = "Resources/images/photos/" + thumbnailFolder + "/" + StringHelper.GetUriFromPath(thumbnailFileNameWithFolder)
+                            NormalUrl = "/Resources/images/photos/" + normalFolder + "/" + StringHelper.GetUriFromPath(normalFileNameWithFolder),
+                            ThumbnailUrl = "/Resources/images/photos/" + thumbnailFolder + "/" + StringHelper.GetUriFromPath(thumbnailFileNameWithFolder)
                         };
 
                         category.Photos.Add(photo);
