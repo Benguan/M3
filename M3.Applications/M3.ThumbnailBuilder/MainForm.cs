@@ -11,6 +11,8 @@ namespace M3.ThumbnailBuilder
 {
     public partial class MainForm : Form
     {
+        //CONFIGURATION
+        private string inputFolder = string.Empty;
         private string thumbnailFolder = "thumbnail";
         private string normalFolder = "normal";
         private static int progress = 0;
@@ -28,6 +30,7 @@ namespace M3.ThumbnailBuilder
         {
             sourceFolder = new DirectoryInfo(SourceFolderTextBox.Text);
             totalFilesCount = sourceFolder.GetFiles("*.jpg", SearchOption.AllDirectories).Length;
+            inputFolder = SourceFolderTextBox.Text;
             new Thread(new ThreadStart(Build)).Start();
         }
 
@@ -42,8 +45,6 @@ namespace M3.ThumbnailBuilder
             var year = 0;
             var folders = sourceFolder.GetDirectories();
 
-
-
             var thumbnailMaxWidth = ConfigurationManager.ThumbnailBuilderConfiguration.ThumbnailMaxWidth;
             var thumbnailMaxHeight = ConfigurationManager.ThumbnailBuilderConfiguration.ThumbnailMaxHeight;
             var photoMaxWidth = ConfigurationManager.ThumbnailBuilderConfiguration.PhotoMaxWidth;
@@ -53,35 +54,58 @@ namespace M3.ThumbnailBuilder
 
             foreach (var folder in folders)
             {
+                var files = folder.GetFiles("*.jpg", SearchOption.AllDirectories);
+
+                if (files.Length <= 0)
+                {
+                    break;
+                }
+
+
                 var category = new Category
                 {
                     Name = folder.Name,
                     Photos = new List<Photo>()
                 };
-                var files = folder.GetFiles("*.jpg", SearchOption.AllDirectories);
-                if (files.Length > 0)
-                {
-                    try
-                    {
-                        year = files[0].LastWriteTime.Year;
-                        category.Year = year;
-                    }
-                    catch
-                    {
-                        category.Year = 0;
-                    }
-                    var photoId = 0;
-                    foreach (var file in files)
-                    {
-                        var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
-                        var thumbnailFullPath = Path.Combine(photosPath, thumbnailFolder, thumbnailFileNameWithFolder);
-                        var thumbnailPhotoInfo = ImageHelper.GetThumbnail(thumbnailMaxWidth, thumbnailMaxHeight, file.FullName, thumbnailFullPath, false);
-                        var normalFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
-                        var normalFullPath = Path.Combine(photosPath, normalFolder, normalFileNameWithFolder);
-                        var normalPhotoInfo = ImageHelper.GetThumbnail(photoMaxWidth, photoMaxHeight, file.FullName, normalFullPath, false);
 
-                        photoId++;
-                        var photo = new Photo
+                
+                var photoId = 0;
+
+                var lastFolderName = "";
+
+                foreach (var file in files)
+                {
+                    string folderName = string.Join("-", file.DirectoryName.Replace(inputFolder + "\\", "").Split('\\'));
+
+                    if (!folderName.Equals(lastFolderName))
+                    {
+                        lastFolderName = folderName;
+                        category = new Category
+                            {
+                                Name = folderName,
+                                Photos = new List<Photo>()
+                            };
+                        try
+                        {
+                            year = file.LastWriteTime.Year;
+                            category.Year = year;
+                        }
+                        catch
+                        {
+                            category.Year = 0;
+                        }
+                        gallery.Categories.Add(category);
+                    }
+
+                    var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
+                    var thumbnailFullPath = Path.Combine(photosPath, thumbnailFolder, thumbnailFileNameWithFolder);
+                    var thumbnailPhotoInfo = ImageHelper.GetThumbnail(thumbnailMaxWidth, thumbnailMaxHeight, file.FullName, thumbnailFullPath, false);
+                    var normalFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
+                    var normalFullPath = Path.Combine(photosPath, normalFolder, normalFileNameWithFolder);
+                    var normalPhotoInfo = ImageHelper.GetThumbnail(photoMaxWidth, photoMaxHeight, file.FullName, normalFullPath, false);
+                    
+                    photoId++;
+                    var photo = new Photo
                         {
                             Id = photoId,
                             Title = Path.GetFileNameWithoutExtension(file.FullName),
@@ -91,14 +115,13 @@ namespace M3.ThumbnailBuilder
                             ThumbnailUrl = "/Resources/images/photos/" + thumbnailFolder + "/" + StringHelper.GetUriFromPath(thumbnailFileNameWithFolder)
                         };
 
-                        category.Photos.Add(photo);
+                    category.Photos.Add(photo);
 
-                        doneFilesCount++;
-                        progress = 100 * doneFilesCount / totalFilesCount;
-                        Invoke(new UpdateProgressEventHandler(UpdateProgress), progress);
-                    }
+
+                    doneFilesCount++;
+                    progress = 100*doneFilesCount/totalFilesCount;
+                    Invoke(new UpdateProgressEventHandler(UpdateProgress), progress);
                 }
-                gallery.Categories.Add(category);
             }
 
             gallery.Categories.Sort();
