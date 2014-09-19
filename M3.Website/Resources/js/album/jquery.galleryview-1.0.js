@@ -15,6 +15,7 @@
         var j_fullscreen;
         var j_play;
         var j_rotate;
+        var j_timer;
         var angle = 0;
 
         var d_albums = {};
@@ -121,9 +122,9 @@
 
             var showImmediately = param && param.showImmediately;
             if (!showImmediately) {
-                j_ins.animate({ opacity: "-=0.8" }, 200, function () {
+                j_ins.animate({ opacity: "0.2" }, 200, function () {
                     img.attr("src", thumb.normalUrl);
-                    j_ins.animate({ opacity: "+=0.8" }, 600, function () {
+                    j_ins.animate({ opacity: "1" }, 600, function () {
                     });
                 });
             } else {
@@ -142,6 +143,8 @@
             thumb_li.addClass("tn3e-thumb-over");
             thumb_li.find("div").css("opacity", "0");
 
+
+
             var warpOffset = j_thumb_warp.offset();
             var liOffset = thumb_li.offset();
             var theThumbOffset = j_thumb.offset();
@@ -159,6 +162,7 @@
             if (++iterator >= d_thumb.length) { iterator = 0; }
             showItem(d_thumb[iterator].id);
             if (opts.autoPlay) {
+                j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
                 $(document).everyTime(opts.transition_interval, "transition", function () {
                     showNextItem();
                 });
@@ -169,6 +173,7 @@
             if (--iterator < 0) { iterator = d_thumb.length - 1; }
             showItem(d_thumb[iterator].id);
             if (opts.autoPlay) {
+                j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
                 $(document).everyTime(opts.transition_interval, "transition", function () {
                     showNextItem();
                 });
@@ -232,7 +237,7 @@
         };
 
         function buildFilmstrip() {
-            var strip = $('<div class="tn3e-image" style="width: 770px; height: 300.885416666667px; overflow: hidden; position: relative;">\
+            var strip = $('<div class="tn3e-image" style="width: 770px; height: 304.885416666667px; overflow: hidden; position: relative;">\
                             <div class="tn3e-image-ins" style="position: absolute; width: 100%; height: 100%;">\
                                 <div class="tn3e-image-in" style="position: absolute; overflow: hidden; visibility: visible; width: 770px; height: 300.885416666667px; left: 0px;">\
                                     <div class="tn3e-full-image" style="position: absolute; width: 770px; height: 301px; left: 0px; top: 0px;text-align:center;marin:0 auto">\
@@ -257,7 +262,7 @@
             j_fullscreen = strip.find(".tn3e-fullscreen");
             j_insFullImage = strip.find(".tn3e-full-image");
             j_rotate = strip.find(".tn3e-show-albums");
-            
+            j_timer = strip.find(".tn3e-timer");
             j_rotate.click(function () {
                 angle = angle + 90;
                 var transformAngle = "rotate(" + angle + "deg)";
@@ -272,11 +277,14 @@
             j_play.click(function () {
                 opts.autoPlay = !opts.autoPlay;
                 if (opts.autoPlay) {
+                    j_timer.show();
                     $(this).addClass("tn3e-play-active");
+                    j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
                     $(document).everyTime(opts.transition_interval, "transition", function () {
                         showNextItem();
                     });
                 } else {
+                    j_timer.stop().hide();
                     $(this).removeClass("tn3e-play-active");
                     $(document).stopTime("transition");
                 }
@@ -321,13 +329,15 @@
                     });
                     strip.css({
                         width: docWidth - 180,
-                        height: docHeight - 95,
+                        height: docHeight - 91,
                     });
 
                     j_ins.css({
                         width: docWidth - 180,
                         height: docHeight - 95,
                     });
+
+            
 
                     var fullImg = j_insFullImage.find("img");
                     var thumb = d_thumb[iterator];
@@ -362,6 +372,11 @@
                         left: (j_gallery.width() / 2) - j_controlbar.width() + "px",
                     });
 
+                    console.log(j_ins.offset().top);
+                    console.log(j_ins.height());
+
+                    j_timer.css({ bottom: -1 * (docHeight - 391) });
+
                     launchFullscreen(j_gallery.get(0));
 
                     $(document).on('keyup', escHandle);
@@ -374,7 +389,7 @@
                     });
                     strip.css({
                         width: 770,
-                        height: 300,
+                        height: 304,
                     });
                     j_ins.css({
                         width: 770,
@@ -404,6 +419,7 @@
                         top : "110.5px",
                         left: "263.5px"
                     });
+                    j_timer.css({ bottom:  - 4 });
                     exitFullscreen(j_gallery.get(0));
                     $(document).off('keyup', escHandle);
                 };
@@ -500,6 +516,8 @@
             }
 
             if (opts.autoPlay) {
+                j_timer.show();
+                j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
                 $(document).everyTime(opts.transition_interval, "transition", function () {
                     showNextItem();
                 });
