@@ -24,7 +24,5 @@ namespace M3.Models
                 return maxId;
             }
         }
-
-
     }
 }

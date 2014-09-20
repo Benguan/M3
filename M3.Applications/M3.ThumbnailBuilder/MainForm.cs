@@ -95,7 +95,6 @@ namespace M3.ThumbnailBuilder
                             continue;
                         }
 
-
                         if (!folderName.Equals(lastFolderName))
                         {
                             lastFolderName = folderName;
@@ -152,7 +151,15 @@ namespace M3.ThumbnailBuilder
                     sourceGallery.Categories.AddRange(gallery.Categories);
                 }
 
-                sourceGallery.Categories.Sort();
+                sourceGallery.Categories.Sort(CompareByYear);
+
+                int pageId = 0;
+                foreach (Category category in sourceGallery.Categories)
+                {
+                    pageId++;
+                    category.Page = pageId;
+                }
+
                 try
                 {
                     StorageHelper.SaveGallery(sourceGallery);
@@ -168,6 +175,32 @@ namespace M3.ThumbnailBuilder
             catch (Exception ex)
             {
                 MessageBox.Show("Build Error:"+ ex.Message);
+            }
+        }
+
+        private static int CompareByYear(Category a, Category b)
+        {
+            if (a == null)
+            {
+                if (b == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (b == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return a.Year.CompareTo(b.Year);
+                }
             }
         }
 

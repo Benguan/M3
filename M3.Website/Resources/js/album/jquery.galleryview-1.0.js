@@ -25,32 +25,6 @@
         var d_thumb = [];
         var d_thumbIndex = {};
 
-        //d_albums["1"] = {
-        //    id: 1, name: "2014春游", page: 1, year: 2014,
-        //    cover: { id: 1, title: "第1页第1张", description: "第1张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/1.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/1.jpg" },
-        //    photos: [
-        //         [{ id: 1, title: "第1页第1张", description: "第1张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/1.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/1.jpg" },
-        //         { id: 2, title: "第1页第2张", description: "第2张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/2.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/2.jpg" },
-        //         { id: 3, title: "第1页第2张", description: "第3张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/3.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/3.jpg" },
-        //         { id: 4, title: "第1页第2张", description: "第4张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/4.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/4.jpg" },
-        //         { id: 5, title: "第1页第2张", description: "第5张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/5.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/5.jpg" },
-        //         { id: 6, title: "第1页第2张", description: "第6张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/6.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/6.jpg" },
-        //         { id: 7, title: "第1页第2张", description: "第7张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/7.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/7.jpg" },
-        //         { id: 8, title: "第1页第2张", description: "第8张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/8.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/8.jpg" },
-        //         { id: 9, title: "第1页第2张", description: "第9张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/9.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/9.jpg" },
-        //         { id: 10, title: "第1页第2张", description: "第10张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/10.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/10.jpg" },
-        //         { id: 11, title: "第1页第2张", description: "第11张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/11.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/11.jpg" },
-        //         { id: 12, title: "第1页第2张", description: "第12张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/12.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/12.jpg" },
-        //         { id: 13, title: "第1页第2张", description: "第13张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/13.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/13.jpg" },
-        //         { id: 14, title: "第1页第2张", description: "第14张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/14.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/14.jpg" },
-        //         { id: 15, title: "第1页第2张", description: "第15张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/15.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/15.jpg" },
-        //         { id: 16, title: "第1页第2张", description: "第16张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/16.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/16.jpg" },
-        //         { id: 17, title: "第1页第2张", description: "第17张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/17.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/17.jpg" },
-        //         { id: 18, title: "第1页第2张", description: "第18张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/18.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/18.jpg" },
-        //         { id: 19, title: "第1页第2张", description: "第19张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/19.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/19.jpg" },
-        //         { id: 20, title: "第1页第2张", description: "第20张", thumbnailUrl: "http://www.tn3gallery.com/images/114x72/20.jpg", normalUrl: "http://www.tn3gallery.com/images/920x360/20.jpg" }],
-        //    ]
-        //};
 
         function loadImages(handler) {
 
@@ -122,9 +96,9 @@
 
             var showImmediately = param && param.showImmediately;
             if (!showImmediately) {
-                j_ins.animate({ opacity: "0.2" }, 200, function () {
+                j_ins.stop().animate({ opacity: "0.2" }, 200, function () {
                     img.attr("src", thumb.normalUrl);
-                    j_ins.animate({ opacity: "1" }, 600, function () {
+                    j_ins.stop().animate({ opacity: "1" }, 600, function () {
                     });
                 });
             } else {
@@ -143,17 +117,10 @@
             thumb_li.addClass("tn3e-thumb-over");
             thumb_li.find("div").css("opacity", "0");
 
-
-
-            var warpOffset = j_thumb_warp.offset();
-            var liOffset = thumb_li.offset();
-            var theThumbOffset = j_thumb.offset();
-            var theThumbLiOffset = thumb_li.offset();
-
-            j_thumb_ul.animate({
+            j_thumb_ul.stop().animate({
                 top: "-" + i * 75 + "px"
             }, 200);
-
+            
             j_navPrev.click(showPrevItem);
             j_navNext.click(showNextItem);
         };
@@ -162,7 +129,7 @@
             if (++iterator >= d_thumb.length) { iterator = 0; }
             showItem(d_thumb[iterator].id);
             if (opts.autoPlay) {
-                j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
+                j_timer.stop().animate({ width: j_ins.width() }, 0).stop().animate({ width: "0" }, opts.transition_interval);
                 $(document).everyTime(opts.transition_interval, "transition", function () {
                     showNextItem();
                 });
@@ -173,7 +140,7 @@
             if (--iterator < 0) { iterator = d_thumb.length - 1; }
             showItem(d_thumb[iterator].id);
             if (opts.autoPlay) {
-                j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
+                j_timer.stop().animate({ width: j_ins.width() }, 0).stop().animate({ width: "0" }, opts.transition_interval);
                 $(document).everyTime(opts.transition_interval, "transition", function () {
                     showNextItem();
                 });
@@ -226,6 +193,13 @@
                 thumb.click(function () {
                     var pid = $(this).data("photo-id");
                     showItem(pid);
+                    $(document).stopTime("transition");
+                    if (opts.autoPlay) {
+                        j_timer.stop().animate({ width: j_ins.width() }, 0).stop().animate({ width: "0" }, opts.transition_interval);
+                        $(document).everyTime(opts.transition_interval, "transition", function () {
+                            showNextItem();
+                        });
+                    }
                 });
                 j_thumb_ul.append(thumb);
 
@@ -279,7 +253,7 @@
                 if (opts.autoPlay) {
                     j_timer.show();
                     $(this).addClass("tn3e-play-active");
-                    j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
+                    j_timer.stop().animate({ width: j_ins.width() }, 0).stop().animate({ width: "0" }, opts.transition_interval);
                     $(document).everyTime(opts.transition_interval, "transition", function () {
                         showNextItem();
                     });
@@ -292,15 +266,13 @@
 
             var showControllBar = function(control) {
                 controllBarStatus = true;
-                console.log("over:" + controllBarStatus);
-                control.animate({ opacity: "+=1" }, 100);
+                control.stop().animate({ opacity: "+=1" }, 100);
             };
             var hideControllBar = function (control) {
                 controllBarStatus = false;
                 setTimeout(function () {
-                    console.log("out:" + controllBarStatus);
                     if (!controllBarStatus) {
-                        control.animate({ opacity: "-=1" }, 100);
+                        control.stop().animate({ opacity: "-=1" }, 100);
                     }
                 }, 400);
             };
@@ -371,9 +343,6 @@
                         top: (j_gallery.height() / 2) - j_controlbar.height() + "px",
                         left: (j_gallery.width() / 2) - j_controlbar.width() + "px",
                     });
-
-                    console.log(j_ins.offset().top);
-                    console.log(j_ins.height());
 
                     j_timer.css({ bottom: -1 * (docHeight - 391) });
 
@@ -517,7 +486,7 @@
 
             if (opts.autoPlay) {
                 j_timer.show();
-                j_timer.animate({ width: j_ins.width() }, 0).animate({ width: "0" }, opts.transition_interval);
+                j_timer.stop().animate({ width: j_ins.width() }, 0).stop().animate({ width: "0" }, opts.transition_interval);
                 $(document).everyTime(opts.transition_interval, "transition", function () {
                     showNextItem();
                 });
