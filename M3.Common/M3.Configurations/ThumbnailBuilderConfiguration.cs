@@ -23,5 +23,8 @@ namespace M3.Configurations
         [XmlElement("PhotoMaxHeight")]
         public int PhotoMaxHeight { get; set; }
 
+        [XmlElement("ThreadCount")]
+        public int ThreadCount { get; set; }
+
     }
 }
