@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using M3.Configurations;
@@ -44,12 +48,12 @@ namespace M3.ThumbnailBuilder
         {
             try
             {
-                if (sourceGallery == null )
+                if (sourceGallery == null)
                 {
-                    sourceGallery = new Gallery {Categories = new List<Category>()};
+                    sourceGallery = new Gallery { Categories = new List<Category>() };
                 }
 
-                var gallery = new Gallery {Categories = new List<Category>()};
+                var gallery = new Gallery { Categories = new List<Category>() };
 
                 var startTime = DateTime.Now;
                 var year = 0;
@@ -77,16 +81,15 @@ namespace M3.ThumbnailBuilder
                             Photos = new List<Photo>()
                         };
 
-
                     var photoId = 0;
 
                     var lastFolderName = "";
 
                     foreach (var file in files)
                     {
-                        string[] directoryList = file.DirectoryName.Split('\\');
+                        var directoryList = file.DirectoryName.Split('\\');
 
-                        string folderName = directoryList[directoryList.Length - 1]; //向上获取一层Folder名
+                        var folderName = directoryList[directoryList.Length - 1]; //向上获取一层Folder名
                         //string folderName = string.Join("-", file.DirectoryName.Replace(inputFolder + "\\", "").Split('\\'));         //获取每一层folder名，之间用-隔开
 
                         if (IsExistInGallery(folderName))
@@ -99,19 +102,28 @@ namespace M3.ThumbnailBuilder
                         {
                             lastFolderName = folderName;
                             category = new Category
-                                {
-                                    Name = folderName,
-                                    Photos = new List<Photo>()
-                                };
+                            {
+                                Photos = new List<Photo>()
+                            };
                             try
                             {
-                                year = file.LastWriteTime.Year;
-                                category.Year = year;
+                                var image = new Bitmap(file.FullName);
+                                var propertyItem = image.GetPropertyItem(0x132);
+                                var dateString = Encoding.UTF8.GetString(propertyItem.Value, 0, propertyItem.Value.Length - 1);
+                                var date = DateTime.ParseExact(dateString, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
+                                year = date.Year;
                             }
-                            catch
+                            catch (ArgumentException)
                             {
-                                category.Year = 0;
+                                year = file.LastWriteTime.Year;
                             }
+                            catch (Exception)
+                            {
+                                year = 0;
+                            }
+
+                            category.Year = year;
+                            category.Name = GetNameWithoutDateInfo(folderName, year);
                             gallery.Categories.Add(category);
                         }
 
@@ -151,10 +163,10 @@ namespace M3.ThumbnailBuilder
                     sourceGallery.Categories.AddRange(gallery.Categories);
                 }
 
-                sourceGallery.Categories.Sort(CompareByYear);
+                sourceGallery.Categories.Sort();
 
                 int pageId = 0;
-                foreach (Category category in sourceGallery.Categories)
+                foreach (var category in sourceGallery.Categories)
                 {
                     pageId++;
                     category.Page = pageId;
@@ -174,33 +186,7 @@ namespace M3.ThumbnailBuilder
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Build Error:"+ ex.Message);
-            }
-        }
-
-        private static int CompareByYear(Category b, Category a)
-        {
-            if (a == null)
-            {
-                if (b == null)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-            else
-            {
-                if (b == null)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return a.Year.CompareTo(b.Year);
-                }
+                MessageBox.Show("Build Error:" + ex.Message);
             }
         }
 
@@ -226,10 +212,15 @@ namespace M3.ThumbnailBuilder
         public void InvokeProcessBar()
         {
             doneFilesCount++;
-            progress = 100*doneFilesCount/totalFilesCount;
+            progress = 100 * doneFilesCount / totalFilesCount;
             Invoke(new UpdateProgressEventHandler(UpdateProgress), progress);
         }
 
-
+        private string GetNameWithoutDateInfo(string name, int year)
+        {
+            var pattern = "[- .]?(((19|20)?[0-9]{2}[- /.](1[012]|0?[1-9])[- /.]([12][0-9]|3[01]|0?[1-9]))|((19|20)[0-9]{2}))";
+            var regex = new Regex(pattern);
+            return regex.Replace(name, string.Empty);
+        }
     }
 }

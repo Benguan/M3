@@ -23,11 +23,11 @@ namespace M3.Models
             var compareCategory = (Category)obj;
             if (this.Year > compareCategory.Year)
             {
-                return 1;
+                return -1;
             }
             else if (this.Year < compareCategory.Year)
             {
-                return -1;
+                return 1;
             }
 
             return new CaseInsensitiveComparer().Compare(this.Name, compareCategory.Name);
