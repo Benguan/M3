@@ -178,7 +178,7 @@ namespace M3.ThumbnailBuilder
             }
         }
 
-        private static int CompareByYear(Category a, Category b)
+        private static int CompareByYear(Category b, Category a)
         {
             if (a == null)
             {

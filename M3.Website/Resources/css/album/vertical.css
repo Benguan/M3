@@ -152,7 +152,7 @@
     height: 4px;
     bottom: -4px;
     background: url('/Resources/images/album/bg.png') repeat;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .tn3e-play {

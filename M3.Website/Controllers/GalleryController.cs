@@ -12,7 +12,7 @@ namespace M3.Website.Controllers
         [HttpGet]
         public Category Detail(int id, int page, string callback)
         {
-            return GalleryHelper.GetPagedCategory(id, page, false);
+            return GalleryHelper.GetPagedCategory(id, false);
         }
 
 
