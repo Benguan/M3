@@ -218,7 +218,7 @@ namespace M3.ThumbnailBuilder
 
         private string GetNameWithoutDateInfo(string name, int year)
         {
-            var pattern = "[- .]?(((19|20)?[0-9]{2}[- /.](1[012]|0?[1-9])[- /.]([12][0-9]|3[01]|0?[1-9]))|((19|20)[0-9]{2}))";
+            var pattern = "[- .]?(((19|20)?[0-9]{2}[- /.]{0,1}(1[012]|0?[1-9])[- /.]{0,1}([12][0-9]|3[01]|0?[1-9]))|((19|20)[0-9]{2}))";
             var regex = new Regex(pattern);
             return regex.Replace(name, string.Empty);
         }
