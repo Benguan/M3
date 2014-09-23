@@ -112,13 +112,16 @@ namespace M3.ThumbnailBuilder
                                 var dateString = Encoding.UTF8.GetString(propertyItem.Value, 0, propertyItem.Value.Length - 1);
                                 var date = DateTime.ParseExact(dateString, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
                                 year = date.Year;
+                                category.Date = date.ToShortDateString(); ;
                             }
                             catch (ArgumentException)
                             {
                                 year = file.LastWriteTime.Year;
+                                category.Date = file.LastWriteTime.ToShortDateString();
                             }
                             catch (Exception)
                             {
+                                category.Date = DateTime.MinValue.ToShortDateString();
                                 year = 0;
                             }
 

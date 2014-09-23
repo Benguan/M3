@@ -10,6 +10,8 @@ namespace M3.Models
 
         public int Year { get; set; }
 
+        public string Date { get; set; }
+
         public string Name { get; set; }
 
         public int Page { get; set; }
