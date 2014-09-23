@@ -1,18 +1,29 @@
 ﻿@{
-    ViewBag.Title = "关于";
+    ViewBag.Title = "其他";
     Layout = "~/Views/Shared/BaseLayout.cshtml";
 }
 
 <div class="container body-content">
     <div class="update panel panel-default">
         <div class="panel-heading">
+            <h4><i class="fa fa-coffee"></i>M3 Gallery 简介：</h4>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item"><span class="about-list blue"></span>分为长廊和相册两个概念</li>
+            <li class="list-group-item"><span class="about-list blue"></span>长廊负责展示历史照片概要，相册展示具体的文件夹图片。</li>
+            <li class="list-group-item"><span class="about-list blue"></span>每个图片文件夹分配一个长廊展示区，展示区的Title为图片文件夹的名字.</li>
+            <li class="list-group-item"><span class="about-list blue"></span>长廊按照图片年份倒叙排列</li>
+        </ul>
+
+        <div class="panel-heading">
+        </div>
+        <div class="panel-heading">
             <h4><i class="fa fa-coffee"></i>@ViewBag.Title</h4>
         </div>
         <ul class="list-group">
-            <li class="list-group-item"><span class="about-list blue"></span>Newegg第一届编程马拉松参赛作品</li>
+            <li class="list-group-item"><span class="about-list green"></span>Newegg第一届编程马拉松参赛作品</li>
             <li class="list-group-item"><span class="about-list green"></span>"M3"队名来历："3W"倒过来</li>
-            <li class="list-group-item"><span class="about-list origine"></span>团队成员：Bean, Ben, Mark, Mark, Yang</li>
-            <li class="list-group-item"><span class="about-list red"></span>口号：第一是我们的！</li>
+            <li class="list-group-item"><span class="about-list green"></span>团队成员：Bean, Ben, Mark, Mark, Yang; 参谋：Peter，Gary</li>
         </ul>
     </div>
 </div>
