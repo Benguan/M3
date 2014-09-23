@@ -69,66 +69,56 @@ namespace M3.ThumbnailBuilder
                 foreach (var folder in folders)
                 {
                     var files = folder.GetFiles("*.jpg", SearchOption.AllDirectories);
+                    var folderName = folder.Name;
+                    var photoId = 0;
+                    var category = new Category
+                    {
+                        Photos = new List<Photo>()
+                    };
+
+                    var name = GetNameWithoutDateInfo(folderName);
+
+                    if (IsExistInGallery(name))
+                    {
+                        for (var i = 0; i < files.Length; i++)
+                        {
+                            this.InvokeProcessBar();
+                        }
+                        continue;
+                    }
 
                     if (files.Length <= 0)
                     {
                         break;
                     }
 
-                    var category = new Category
-                        {
-                            Name = folder.Name,
-                            Photos = new List<Photo>()
-                        };
+                    try
+                    {
+                        var image = new Bitmap(files[0].FullName);
+                        var propertyItem = image.GetPropertyItem(0x132);
+                        var dateString = Encoding.UTF8.GetString(propertyItem.Value, 0, propertyItem.Value.Length - 1);
+                        var date = DateTime.ParseExact(dateString, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
+                        year = date.Year;
+                        category.Date = date.ToString("yyyy-MM-dd");
+                    }
+                    catch (ArgumentException)
+                    {
+                        year = files[0].LastWriteTime.Year;
+                        category.Date = files[0].LastWriteTime.ToString("yyyy-MM-dd");
+                    }
+                    catch (Exception)
+                    {
+                        category.Date = DateTime.MinValue.ToString("yyyy-MM-dd");
+                        year = 0;
+                    }
 
-                    var photoId = 0;
-
-                    var lastFolderName = "";
+                    category.Year = year;
+                    category.Name = name;
+                    gallery.Categories.Add(category);
 
                     foreach (var file in files)
                     {
-                        var directoryList = file.DirectoryName.Split('\\');
 
-                        var folderName = directoryList[directoryList.Length - 1]; //向上获取一层Folder名
-                        //string folderName = string.Join("-", file.DirectoryName.Replace(inputFolder + "\\", "").Split('\\'));         //获取每一层folder名，之间用-隔开
-
-                        if (IsExistInGallery(folderName))
-                        {
-                            this.InvokeProcessBar();
-                            continue;
-                        }
-
-                        if (!folderName.Equals(lastFolderName))
-                        {
-                            lastFolderName = folderName;
-                            category = new Category
-                            {
-                                Photos = new List<Photo>()
-                            };
-                            try
-                            {
-                                var image = new Bitmap(file.FullName);
-                                var propertyItem = image.GetPropertyItem(0x132);
-                                var dateString = Encoding.UTF8.GetString(propertyItem.Value, 0, propertyItem.Value.Length - 1);
-                                var date = DateTime.ParseExact(dateString, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
-                                year = date.Year;
-                                category.Date = date.ToShortDateString(); ;
-                            }
-                            catch (ArgumentException)
-                            {
-                                year = file.LastWriteTime.Year;
-                                category.Date = file.LastWriteTime.ToShortDateString();
-                            }
-                            catch (Exception)
-                            {
-                                category.Date = DateTime.MinValue.ToShortDateString();
-                                year = 0;
-                            }
-
-                            category.Year = year;
-                            category.Name = GetNameWithoutDateInfo(folderName, year);
-                            gallery.Categories.Add(category);
-                        }
 
                         var thumbnailFileNameWithFolder = year + file.FullName.Substring(sourceFolder.FullName.Length, file.FullName.Length - sourceFolder.FullName.Length);
                         var thumbnailFullPath = Path.Combine(photosPath, thumbnailFolder, thumbnailFileNameWithFolder);
@@ -219,7 +209,7 @@ namespace M3.ThumbnailBuilder
             Invoke(new UpdateProgressEventHandler(UpdateProgress), progress);
         }
 
-        private string GetNameWithoutDateInfo(string name, int year)
+        private string GetNameWithoutDateInfo(string name)
         {
             var pattern = "[- .]?(((19|20)?[0-9]{2}[- /.]{0,1}(1[012]|0?[1-9])[- /.]{0,1}([12][0-9]|3[01]|0?[1-9]))|((19|20)[0-9]{2}))";
             var regex = new Regex(pattern);
