@@ -24,7 +24,6 @@ namespace M3.ThumbnailBuilder
         private static int doneFilesCount = 0;
         private DirectoryInfo sourceFolder;
         private delegate void UpdateProgressEventHandler(int v);
-
         private Gallery sourceGallery;
 
         public MainForm()
@@ -100,6 +99,7 @@ namespace M3.ThumbnailBuilder
                         var date = DateTime.ParseExact(dateString, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
                         year = date.Year;
                         category.Date = date.ToString("yyyy-MM-dd");
+                        image.Dispose();
                     }
                     catch (ArgumentException)
                     {
@@ -193,7 +193,7 @@ namespace M3.ThumbnailBuilder
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        public bool IsExistInGallery(string categoryName)
+        private bool IsExistInGallery(string categoryName)
         {
             if (sourceGallery != null && sourceGallery.Categories != null && sourceGallery.Categories.Count > 0)
             {
@@ -202,7 +202,7 @@ namespace M3.ThumbnailBuilder
             return false;
         }
 
-        public void InvokeProcessBar()
+        private void InvokeProcessBar()
         {
             doneFilesCount++;
             progress = 100 * doneFilesCount / totalFilesCount;
